@@ -1,0 +1,931 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CS229总结," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="刚刚进入机器学习这一领域的学习，一开始看了Andrew Ng的machine learning，又看了点李飞飞的CS231n课程，然后又转战周志华的西瓜书，无奈都是半吊子，最后都因不解概率统计知识放弃。迷茫的时候都是知乎指明了方向，看到知乎上有人说Andrew Ng的课上有基础知识的补充，以及很良心的笔记，只怪我之前没">
+<meta name="keywords" content="CS229总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS229-note1">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/cs229-note1/index.html">
+<meta property="og:site_name" content="Zoe&#39;s Blog">
+<meta property="og:description" content="刚刚进入机器学习这一领域的学习，一开始看了Andrew Ng的machine learning，又看了点李飞飞的CS231n课程，然后又转战周志华的西瓜书，无奈都是半吊子，最后都因不解概率统计知识放弃。迷茫的时候都是知乎指明了方向，看到知乎上有人说Andrew Ng的课上有基础知识的补充，以及很良心的笔记，只怪我之前没有发现，machine lerning视频，以及笔记。本篇是个人对前四个视频及对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-29T07:49:57.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CS229-note1">
+<meta name="twitter:description" content="刚刚进入机器学习这一领域的学习，一开始看了Andrew Ng的machine learning，又看了点李飞飞的CS231n课程，然后又转战周志华的西瓜书，无奈都是半吊子，最后都因不解概率统计知识放弃。迷茫的时候都是知乎指明了方向，看到知乎上有人说Andrew Ng的课上有基础知识的补充，以及很良心的笔记，只怪我之前没有发现，machine lerning视频，以及笔记。本篇是个人对前四个视频及对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/cs229-note1/"/>
+
+
+
+
+
+  <title> CS229-note1 | Zoe's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?48b321ed2f9cb4a2acda1fddc5857b9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zoe's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Zoe</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/cs229-note1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CS229-note1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T15:14:07+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/18/cs229-note1/" class="leancloud_visitors" data-flag-title="CS229-note1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>刚刚进入机器学习这一领域的学习，一开始看了Andrew Ng的machine learning，又看了点李飞飞的CS231n课程，然后又转战周志华的西瓜书，无奈都是半吊子，最后都因不解概率统计知识放弃。迷茫的时候都是知乎指明了方向，看到知乎上有人说Andrew Ng的课上有基础知识的补充，以及很良心的笔记，只怪我之前没有发现，<a href="http://open.163.com/movie/2008/1/M/C/M6SGF6VB4_M6SGHFBMC.html" target="_blank" rel="noopener">machine lerning</a>视频，以及<a href="http://cs229.stanford.edu/syllabus.html" target="_blank" rel="noopener">笔记</a>。本篇是个人对前四个视频及对应的note1的总结。<br><a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这一部分是Supervised Learning(监督学习)的内容，监督学习，就是你给计算机一组数据时，同时给出每个数据对应的目标值，然后学习算法根据这些数据和目标值训练出一个函数关系，称为hypothesis，当你输入所要求取的数据时，计算机就会根据这个hypothesis输出对应的目标值。有Supervised Learning，自然就有Unsupervised Learning，对于非监督学习，就是当你给出一组数据时，并不给出这些数据的正确答案，即只有这些数据，没有对应的目标值，相应的学习算法只是为了找出这些数据存在的结构特征，并不需要给出标准答案，比如clustering(聚类)问题。在监督学习中，根据target(目标)变量是连续还是离散的，将相应问题称为regression问题和classification问题。</p>
+<p>主要分三个部分Linear Regression(线性回归)、Classification ang Logic Regression(分类问题和逻辑回归)及Generalized Linear Models(广义线性模型)。相应内容有：对于特征选择不需要太关注的线性回归的改编——Locally Weighted Regression(局部加权回归)、求线性回归问题时最小化cost function $J(\theta)$的两种方法：gradient descent(梯度下降)及the normal equations(正规方程组)、线性模型的概率解释、求逻辑回归问题时最大化likelihood function(似然函数)的两种方法：gradient ascent(梯度上升)及 Newton’s method(牛顿方法)、the perceptron(感知器) learning algorithm、the exponential family(指数分部族)及GLMs(广义线性模型)。</p>
+<h2 id="Generalized-Linear-Models"><a href="#Generalized-Linear-Models" class="headerlink" title="Generalized Linear Models"></a>Generalized Linear Models</h2><h3 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h3><p>现单纯介绍一个概率论问题，定义一类特殊分布——the exponential family，它的分布律或者概率密度满足：$p(y;\eta)=b(y)exp(\eta^TT(y)-a(\eta))$，其中$\eta$称为natural parameter，$T(y)$是sufficient statistic（充分统计量），常取$T(y)=y$，$a(\eta)$称为log partition function（这边我不了解$a$、$b$及$T$这三个函数具体的概念意义，只知道这个分布的特点是以$\eta$为参数，$a$、$b$及$T$是三个未确定的函数，以及这边的$T(y)$在随后的GLMs算法中取期望作为输出量）。</p>
+<h4 id="Bernouli分布"><a href="#Bernouli分布" class="headerlink" title="Bernouli分布"></a>Bernouli分布</h4><p>对于$Bernouli(\Phi)$分布（$\Phi$为数学期望），通过对其分布律公式进行变形，可以得到exponential family distributions的形式，即Bernouli分布是指数分布族的一种，满足$T(y)=y$，</p>
+<script type="math/tex; mode=display">\Phi=\frac{1}{1+e^{-\eta}}（sigmoid 函数）</script><p>及其他等式（这边只列出$\eta$及$T$函数，因为后面的GLMs算法并未用到$a$和$b$函数）。</p>
+<h4 id="Gaussion分布"><a href="#Gaussion分布" class="headerlink" title="Gaussion分布"></a>Gaussion分布</h4><p>对于Gaussion($\mu$,$\sigma^2$)，$\sigma^2$对我们最后所要选择的模型的$\theta$参数值并没有影响，故在此处，将$\sigma^2$取为1。同样也可得出Gaussion分布也是指数分布族的一种，并有$T(y)=y$，$\mu=\eta$。</p>
+<h4 id="多项式分布"><a href="#多项式分布" class="headerlink" title="多项式分布"></a>多项式分布</h4><p>对于多项式分布，$y$取值$\{1，2，…，k\}$，对应的概率分别为$\Phi_1$，$\Phi_2$，…$\Phi_k$，也可得出多项式分布也是指数分布族的一种，并有$T(y)\in{R^{k-1}}$，且</p>
+<script type="math/tex; mode=display">T(1)=\left[\begin{matrix} 1\\0\\0\\ \vdots\\0\end{matrix}\right],T(2)=\left[\begin{matrix} 0\\1\\0\\ \vdots\\0\end{matrix}\right],…,T(k-1)=\left[\begin{matrix} 0\\0\\0\\ \vdots\\1\end{matrix}\right],T(k)=\left[\begin{matrix} 0\\0\\0\\ \vdots\\0\end{matrix}\right]</script><p>及</p>
+<script type="math/tex; mode=display">\Phi_i={e^{\eta_i}\over 1+\sum_{j=1}^{k-1}e^{\eta_j}}，(i=1,2…,k-1)</script><p>由$\eta$表示$\Phi$的函数关系称为softmax函数（得到这些关系的中间过程可参考note1）。此外还有其他许多分布都属于指数分布族。</p>
+<h3 id="GLMs"><a href="#GLMs" class="headerlink" title="GLMs"></a>GLMs</h3><p>若考虑一个回归或分类问题，根据训练样本我们需要得到一个函数关系，从而进行预测。现作如下假设：</p>
+<ul>
+<li>$y|x;\theta$ ~ $ExponentialFamily(\eta)$；</li>
+<li>输入$x$，目的是输出$E[T(y)|x]$，大多数情况$T(y)=y$，此时输出$h(x)=E[y|x]$；</li>
+<li>$\eta=\theta^Tx$，如果$\eta$是向量，则${\eta_i=\theta_i}^Tx$（这一条最好称为设计决策）。</li>
+</ul>
+<p>从而得到一类很优雅的学习算法——GLMs，即广义线性模型。对于回归或分类问题，若使用GLMs算法，可以先根据target变量（在GLM术语中又称为response变量）是连续还是离散及其他特性选择指数分布族的一种分布来表示条件条件概率$y|x$，然后根据假设二和三得出用参数$\theta$表示的hyphothesis $h_\theta(x)$，最后根据训练样本利用最大似然估计求出$\theta$，使得这个算法能较好地拟合训练数据。求最大似然函数对应的参数值时，方法有梯度下降和牛顿方法。下面用GLMs算法来具体分析。</p>
+<h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><p>考虑target变量y的取值是连续的，用指数分布族中的Gaussion分布作为模型，即条件分布$y|x$~$N(\mu,\sigma^2)$，概率密度</p>
+<script type="math/tex; mode=display">p(y|x)={1\over {\sqrt{2\pi}\sigma}}exp(-{(y-\mu)^2\over{2\sigma^2}})</script><p>其中$\mu$是$x$的函数，根据GLMs的假设条件及Gaussion分布的指数分布形式，可得出</p>
+<script type="math/tex; mode=display">h_\theta(x)=E[T(y)|x;\theta]=E[y|x;\theta]=\mu=\eta=\theta^Tx</script><p>不同的$\theta$确定了不同的hypothesis，即假设空间，我们需要确定$\theta$找出一个最优的作为决策函数。那$\theta$取多少时，$h_\theta(x)$能很好地拟合训练数据，具有泛化能力，能抓住数据的本质特征，更好地决策未知数据呢，另外，我们又如何评判这个拟合标准呢，这边使用最大似然估计法。</p>
+<h3 id="likelihood-function"><a href="#likelihood-function" class="headerlink" title="likelihood function"></a>likelihood function</h3><p>似然函数是什么，看视频时云里雾里，看笔记下了个决心好好百度下，有时候克服克服这种懒性，或许一个小的概念就能解决了（就像朝阳今天写的，需要投之以热爱与投入，坚持不懈，解决问题）。对于概率问题，我们通常都是已知参数求某一件事发生的概率，关注点在于概率，即这件事发生的可能性，而似然性问题，是已知某件事发生的结果，需要用它来估计参数，虽然最后表达式还是概率的形式，但意义变了。试想我们可以表示出某件事发生的概率，现在这件事已经发生了，那不就说明发生的可能性很大，即概率比较大，而这个概率是参数的函数（对于离散型随机变量，概率指的就是它的分布律，对于连续型变量，使用概率密度）就需要找出一个参数值，使这个函数值尽可能的大，就转化为求函数最大时对应的自变量值，这个函数就是似然函数。<br>现在这件事是什么，是采集了$m$个训练样本，输入$x^{(i)}$对应着输出$y^{(i)}$，$x$有$n$个特征$x_0,x_1,…x_n$，这个概率是条件概率，即在$x$的条件下$y$取某个值的概率，而且如上这个概率服从Gaussion分布，在各个样本独立的情况下，似然函数</p>
+<script type="math/tex; mode=display">L(\theta)=L(\theta;X,\vec{y})=p(\vec{y}|X;\theta)=\prod_{i=1}^mp(y^{(i)}|x^{(i)};\theta)=\prod_{i=1}^m{1\over {\sqrt{2\pi}\sigma}}exp(-{(y^{(i)}-\theta^Tx^{(i)})^2\over{2\sigma^2}})</script><p>现在$x$、$y$都是已知的，$\theta$对结果没影响（关于这个小伙伴可自行百度研究）？接着取对数化简，最大化这个函数就相当于最小化$\frac12\sum_{i=1}^m(y^{(i)}-\theta^Tx^{(i)})^2$，即cost函数$J(\theta)$，这个结果从形式上也可理解，最后的效果就是为了使$h_\theta(x)$接近于$y$，这个结果就相当于使用最小二乘法？</p>
+<h3 id="Gradient-Descent的理解"><a href="#Gradient-Descent的理解" class="headerlink" title="Gradient Descent的理解"></a>Gradient Descent的理解</h3><p>下面我们就需要求$\theta$为多少时，$J(\theta)$最小了。关于梯度下降，Andrew Ng是这样讲的，假设你站在一个山上，现在想下山，那你环顾四周，从哪个方向下去最快。山就相当于一个二元函数，即$J(\theta)$是$\theta_0$和$\theta_1$的函数，且有$h_\theta(x)=\theta^Tx=\theta_0+\theta_1x$，这时$x$只有一个特征。复习高数时，理解了下二元函数的方向导数和梯度的关系，二元函数$z=f(x,y)$在空间上就是一个曲面，在定义域组成的平面区域内在点$(x_0,y_0)$处指定一个方向，z关于这个方向上的变化率就称为在该点的方向导数，在该点可指定360度无数个方向，那哪个方向上z的变化率最大呢，事实证明，函数$z$在这点$(x_0,y_0)$的梯度的方向上变化快，那我现在站在山上一个点处，我只要沿着在这点的梯度方向走一段距离到达下一个点，再沿着那个点对应的梯度方向走一段距离，不断更新我的位置，直到走到最低点。这就是梯度下降的思路，我先对$\theta$赋初始值，然后通过减梯度（即减偏导数）不断更新$\theta$，进行迭代，直到最后收敛即$\theta$值基本不变，随着越来越接近最小值，梯度的值也越来越小，步子也迈得越来越小。对于梯度下降有两种实现方法：batch（批）梯度下降和stochastic（随机）梯度下降（见note1）。</p>
+<h3 id="正规方程组的理解"><a href="#正规方程组的理解" class="headerlink" title="正规方程组的理解"></a>正规方程组的理解</h3><p>试想啊，要求$\theta$为多少时，$J(\theta)$最小，简单啊，偏导数都为0啊，这就是正规方程组的思路。Andrew Ng先介绍了下向量和矩阵梯度的写法，试想啊，二元函数梯度，其实就是求偏导啊，但是可以把两个一阶偏导都放在一起，写成向量的形式；那自变量是$n+1$维向量呢，其实你就可以看成是$n+1$个自变量啦，那它的梯度也就是把$n+1$个一阶偏导放一起咯，组成一个$n+1$维向量，那矩阵的梯度不也是如此。将$J(\theta)$的梯度令为0，经过一些运算，中途用到trace（迹）的性质，最后求解出了$\theta$，是不是很兴奋！根据训练样本$X$和$\vec{y}$就可以直接计算出$\theta$了，带入$h_\theta(x)$就可以得到决策函数了，不用再进行迭代。</p>
+<h2 id="Logic-Regression"><a href="#Logic-Regression" class="headerlink" title="Logic Regression"></a>Logic Regression</h2><p>对于二分类，$y\in{\{0,1\}}$，采用指数分布族中的$Bernouli(\Phi)$分布进行建模，</p>
+<script type="math/tex; mode=display">h_\theta(x)=E[T(y)|x;\theta]=E[y|x;\theta]=\Phi={1\over{1+e^{-\eta}}}={1\over{1+e^{-\theta^Tx}}}</script><p>（可以看出$h_\theta(x)$就是在$x$的条件下$y$为1的概率）。同样根据$m$个独立样本，写出$m$个样本在$x^{(i)}$的条件下，$\theta$为后定参数时$y=y^{(i)}$的概率之积，即关于$\theta$的似然函数$L(\theta)$，再将它最大化。<br>这边求$L(\theta)$最大值对应的参数$\theta$时，用了两种方法，一个是与前面类似的梯度上升法，另一个是牛顿法。<br>牛顿法也是通过不停更新迭代$\theta$，只是更新速度和收敛速度都快于梯度上升法。又像正规方程组一样，试图将$L(\theta)$对$\theta$偏导数为0的点找出来。对于求函数零点，它的思路是，先给予$\theta$初始值，然后用函数在这点的切线作为函数的逼近，找出切线所在直线的零点，将这个点作为下一个$\theta$值，不断迭代，直到收敛。它的整体想法就是以切线不断逼近原来的函数。</p>
+<h2 id="Softmax-Regression"><a href="#Softmax-Regression" class="headerlink" title="Softmax Regression"></a>Softmax Regression</h2><p>对于多分类问题，$y\in{\{1,2,…,k\}}$，采用指数分布族中的多项式分布进行建模。由于这边$T(y)$是一个$k-1$维向量，对其求期望所得的$h_\theta(x)$也就是一个$k-1$维向量，那我输入一个$x$，我需要算法告诉我这个$x$对应哪一类，它却给我一个向量，它指的是什么呢？其实它指的是对于取前$k-1$个类的概率，最后一个类呢？用1减不就好了，我们知道了概率，哪个概率最大不就相当于算法告诉我们它选择哪一个类。这只是决策函数的形式，可是参数$\theta$我们还不知道呢，同样类似上面，最大化似然函数，并使用梯度上升或牛顿法进行求解。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>对于局部加权回归，为了弥补线性回归中可能存在的特征选择的问题，比如线性回归可能没有捕捉到数据中的非线性性，从而不能很好地拟合数据，局部加权回归只对所要求解的$x_0$值附近的样本值进行线性拟合，少量的局部数据总是能接近线性关系，这个思路转化为对所有样本数据进行一个加权，$x_0$值附近的样本值加权值比较大，远离$x_0$的加权值比较小。但是局部加权回归有个弊端，就是你每次预测一个值时，都需要使用所有样本数据，进行重新拟合，而单纯的线性回归在训练后得到一个决策函数后就可删除样本数据，直接使用一个函数进行预测。<br>对于感知器学习算法，我只知道将逻辑回归中的sigmoid函数替代成阈值函数，但其后续的概率解释很难？后续的视频教程应该会有所讲解。<br>另外，Linear Regression、Logic Regression以及Softmax Regression都是GLMs算法中的一种，在使用GLMs算法时，我们首先需要根据target的性质来选择指数分布族中的一种分布，根据其分布特性及GLMs的三个假设，得出$p(y|x)$及输出$h_\theta(x)$，$h_\theta(x)$即我们最后用来预测的决策函数，但是此时的参数$\theta$未知，我们怎么解出来呢？从概率的角度，借助$p(y|x)$来求得似然函数，最后求出似然函数最大时对应的参数$\theta$值。所有的一切都转化为求函数最大值，这边主要使用了两种方法：梯度上升和牛顿法。<br>这边，前几日在知乎上看到一句话：按照李航博士的观点，机器学习三要素为：模型、策略、算法。我还没咋去研究，不过总感觉跟这种思路有点类似。</p>
+<p>啊，这篇终于写完了，可是真心感觉写的不行，犹记得大物老师说过，当你理解了一点知识，你能用很精简有条理的语言进行总结，而我这篇，怎么这么多，前面的内容好像是在翻译笔记一样。唉，后面改正，舍不得再删掉重写。<br>天啦噜，昨天晚上写完准备放到博客上去，它竟然提示我有错误，身心俱疲！找了好久，后来发现一篇文档<a href="http://www.cnblogs.com/Ai-heng/p/7282110.html" target="_blank" rel="noopener">hexo博客MathJax公式渲染问题</a>，原来是这个问题。然而放上去后效果不佳，我明明写的块级公式，为什么一直给我显示成行内公式？中午朝阳过来给我看了下，试了试出现的问题，最后！竟然是我写的不规范？当把块级公式跟其他文字隔开时，哇，清爽的公式这才出现。<br>关于公示渲染问题可见小阳博客<a href="http://nuistmi.top/2017/11/28/hexo%E6%B8%B2%E6%9F%93mathjax%E5%85%AC%E5%BC%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener">hexo渲染mathjax公式解决方案</a><br>呵呵哒，今天遇到的问题有点多，刚刚最后稍稍修饰了一点，本地查看正常，当我发布上去，首页面也正常，可是当我点击阅读全文或直接点击题目查看全文，？？，404？发生了什么。最后百度发现一个大小写问题，我查看了一下，果真github网站上博客的文件夹是小写，而本地的是大写，所以我就直接把本地改成了小写，就ok了，但有个教程<a href="http://1mhz.me/2015/hexo-deploy-case-sensitive/" target="_blank" rel="noopener">Hexo 部署到 Github Pages 文件夹大小写问题</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS229总结/" rel="tag"># CS229总结</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/cs229-note2/" rel="prev" title="CS229-note2">
+                CS229-note2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zoe" />
+          <p class="site-author-name" itemprop="name">Zoe</p>
+           
+              <p class="site-description motion-element" itemprop="description">smile.smile.smile</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zoesxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zuo-yi-69-75/activities" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zzoe_0730@163.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gatsby2016.github.io/" title="Gatsby" target="_blank">Gatsby</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://m.blog.csdn.net/sxwzuoyi" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generalized-Linear-Models"><span class="nav-number">2.</span> <span class="nav-text">Generalized Linear Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-exponential-family"><span class="nav-number">2.1.</span> <span class="nav-text">The exponential family</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bernouli分布"><span class="nav-number">2.1.1.</span> <span class="nav-text">Bernouli分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gaussion分布"><span class="nav-number">2.1.2.</span> <span class="nav-text">Gaussion分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多项式分布"><span class="nav-number">2.1.3.</span> <span class="nav-text">多项式分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GLMs"><span class="nav-number">2.2.</span> <span class="nav-text">GLMs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">3.</span> <span class="nav-text">Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#likelihood-function"><span class="nav-number">3.1.</span> <span class="nav-text">likelihood function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-Descent的理解"><span class="nav-number">3.2.</span> <span class="nav-text">Gradient Descent的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程组的理解"><span class="nav-number">3.3.</span> <span class="nav-text">正规方程组的理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logic-Regression"><span class="nav-number">4.</span> <span class="nav-text">Logic Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax-Regression"><span class="nav-number">5.</span> <span class="nav-text">Softmax Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">6.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zoe</span>
+</div>
+
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("9RBYqJYr0vBPCz8abaPAolq7-gzGzoHsz", "8Jy2QbptRtxB7rDs07seHpk9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

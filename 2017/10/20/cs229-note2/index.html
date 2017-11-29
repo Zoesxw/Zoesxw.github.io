@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="CS229总结," />
 
 
 
@@ -101,17 +101,18 @@
 
 
 
-<meta name="description" content="smile.smile.smile">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="本篇是对第5个和第6个部分视频及对应的note2的总结。内容是Generative Learning algorithms(生成学习算法)，主要介绍生成学习中的两个算法，Gaussion discriminant analysis(GDA)高斯判别算法及Naive Bayes朴素贝叶斯算法。">
+<meta name="keywords" content="CS229总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS229-note2">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/cs229-note2/index.html">
 <meta property="og:site_name" content="Zoe&#39;s Blog">
-<meta property="og:description" content="smile.smile.smile">
+<meta property="og:description" content="本篇是对第5个和第6个部分视频及对应的note2的总结。内容是Generative Learning algorithms(生成学习算法)，主要介绍生成学习中的两个算法，Gaussion discriminant analysis(GDA)高斯判别算法及Naive Bayes朴素贝叶斯算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T09:00:10.000Z">
+<meta property="og:updated_time" content="2017-10-21T02:35:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="smile.smile.smile">
+<meta name="twitter:title" content="CS229-note2">
+<meta name="twitter:description" content="本篇是对第5个和第6个部分视频及对应的note2的总结。内容是Generative Learning algorithms(生成学习算法)，主要介绍生成学习中的两个算法，Gaussion discriminant analysis(GDA)高斯判别算法及Naive Bayes朴素贝叶斯算法。">
 
 
 
@@ -139,19 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/20/cs229-note2/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    categories | Zoe's Blog
-  
-</title>
+  <title> CS229-note2 | Zoe's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -186,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,25 +286,178 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/20/cs229-note2/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
+    </span>
 
     
-    
-      <div class="category-all-page">
-        <div class="category-all-title">
-            暂无分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CS229-note2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T13:52:32+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/20/cs229-note2/" class="leancloud_visitors" data-flag-title="CS229-note2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="category-all">
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇是对第5个和第6个部分视频及对应的note2的总结。<br>内容是Generative Learning algorithms(生成学习算法)，主要介绍生成学习中的两个算法，Gaussion discriminant analysis(GDA)高斯判别算法及Naive Bayes朴素贝叶斯算法。<br><a id="more"></a></p>
+<h2 id="生成学习和判别学习算法的区别"><a href="#生成学习和判别学习算法的区别" class="headerlink" title="生成学习和判别学习算法的区别"></a>生成学习和判别学习算法的区别</h2><p>上一篇讨论的linear regression、logistic regression及softmax regression都是属于discriminative learning algorithm(判别学习算法)，这类算法，直接根据训练数据学习$p(y|x)$(比如逻辑回归)，或者学习输入空间$\chi$到标签的映射(perceptron算法)，学习完成后对未知特征进行预测。而generative learning，首先对$p(x|y)$及$p(y)$进行建模，再根据贝叶斯公式得出$p(y|x)$，预测数据$x$时，$p(y|x)$最大即对应着$y$是预测结果。</p>
+<h2 id="生成学习算法"><a href="#生成学习算法" class="headerlink" title="生成学习算法"></a>生成学习算法</h2><h3 id="高斯判别算法"><a href="#高斯判别算法" class="headerlink" title="高斯判别算法"></a>高斯判别算法</h3><p>在GDA模型中，假设$p(x|y)$服从多元正态分布。<br>对于一个二分类问题，输入x是连续随机变量，使用GDA模型，则</p>
+<script type="math/tex; mode=display">y\sim Bernouli(\Phi)</script><script type="math/tex; mode=display">x|y=0\sim N(\mu_0,\sum)</script><script type="math/tex; mode=display">x|y=1\sim N(\mu_1,\sum)</script><p>$\mu_0$和$\mu_1$是在$y=0$和$y=1$情况下向量$x$分布的均值，$\sum$是向量$x$的协方差矩阵。<br>从而可以得出$p(y)$、$p(x|y=0)$及$p(x|y=1)$，再根据贝叶斯公式和全概率公式可以得到$p(y|x)$，但是参数$\Phi$、$\mu_0$、$\mu_1$及$\sum$未知，如何求得这几个参数，参数不同，跟训练数据的拟合程度就不同，同样采用最大似然估计。与判别学习利用条件概率不同，这边似然函数利用的是联合概率。令$log$似然函数对各参数的偏导数为0，可得最大似然估计下的各参数值，代入$p(y|x)$即可进行预测。这边求参数的推导过程可参考博客<a href="http://blog.csdn.net/sz464759898/article/details/44342923" target="_blank" rel="noopener">高斯判别分析(GDA)和朴素贝叶斯(NB)</a>，最后各参数结果具有直观意义。</p>
+<p>关于GDA和逻辑回归的联系。<br>对于GDA模型，$p(y|x;\Phi,\sum,\mu_0,\mu_1)$可写成$\frac{1}{1+exp(-\theta^Tx)}$的形式（正是逻辑回归中用以建立$p(y=1|x)$的模型），其中$\theta$是$\Phi$、$\sum$、$\mu_0$及$\mu_1$的函数。但是$p(y=1|x)$是logistic函数，并不能反向退出$p(x|y)$服从多元高斯分布。这说明GDA比逻辑回归作出了更强的模型假设，直观上也可理解，因为GDA模型假设$p(x|y)$服从多元正态分布。<br>总结：GDA模型作了更强的建模假设，当模型假设正确或近似正确时，GDA只需要更少的训练数据进行学习，拟合数据的也会很好。<br>而逻辑回归作了很弱的假设，鲁棒性更好，所以即使模型假设有偏差，最后效果并不会很差。所以逻辑回归使用得更多。</p>
+<h3 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h3><p>Naive Bayes针对的是特征量$x_i$是离散的情形，比如垃圾邮件过滤器。email classification是text classification中的一种。<br>现如何用特征向量$x$表示一封邮件的内容，假设先整理出一个dictionary(vocabulary)，$x$的维数等于vocabulary的大小，当邮件中有vocabulary中第$i$个的单词时，$x_i$为0，否则为1，这样就可用向量$x$表示一封邮件。<br>假设字典中有50000个单词，下面建模$p(x|y)$，即$p(x_1x_2…x_{50000}|y)$，而$x_1x_2…x_{50000}$有$2^{50000}$种取法，若用多项式分布建模，则需要一个$2^{50000}-1$维的参数向量。为建模$p(x|y)$，作了一个很强的假设，即Naive Bayes(NB)假设，假设各$x_i$条件分布互相独立。对应的算法称为Naive Bayes classifier。则</p>
+<script type="math/tex; mode=display">p(x|y)=p(x_1x_2…x_{50000}|y)=\prod_{i=1}^np(x_i|y)</script><p>同样，建模以后，求联合似然函数，进行最大似然估计求出参数值，最后计算后验概率。<br>对于朴素贝叶斯算法，主要解决特征$x_i$是binary-valued的问题，但也可以推广至$x_i\in\{1,2,…,k_i\}$，这里$p(x_i|y)$服从多项式分布。对于输入是连续的变量，也可对它进行离散化，在连续区间内进行分段。<br>当原始的输入连续，使用GDA模型效果不好时，对特征离散化使用NB，会比GDA更好。</p>
+<p>关于laplace smoothing。当用训练数据求参数时，可能会出现一种情况，就是字典中有一个单词在你的训练数据中从未出现，如果继续计算，参数值为0，最后验概率会出现$\frac{0}{0}$的情形。其实这就是：如果一件事在之前从未发生，那我们能说明它发生的概率为0么？其实它只是发生的概率接近于0，试想，如果一个球队第一场比赛输了，现在你来预测下面一场的输赢，如果按照公式得出赢的概率为0，显然不合理，laplace平滑就给出了一个比较合理的结果。NB classifer使用laplace平滑后解决了那种问题。</p>
+<p>关于event models for text classification(文本事件模型)。在文本分类这个特定情形下，NB使用multi-variate Bernoulli event model(多变量伯努利事件模型)。虽然NB对许多分类问题很适用，但对文本分类，有一个更好的模型：multinomial event model(多项式事件模型)。<br>这边，$x_i$表示这封邮件中第$i$个单词的特性，即$x_i\in\{1,2,…,V\}$，其中V表示vocabulary的大小。有$n$个单词的邮件用向量$(x_1,x_2,…,x_n)$表示，不同的邮件，n不同。然后使用同样的方法进行建模、最大似然估计求参数及求后验概率。</p>
+<p>唉，最近学习状态不佳，写博客也感觉只是一个任务？自我安慰到：对于一篇完全不了解的内容，总结大概就跟写笔记无差别了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS229总结/" rel="tag"># CS229总结</a>
           
         </div>
-      </div>
-    
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/18/cs229-note1/" rel="next" title="CS229-note1">
+                <i class="fa fa-chevron-left"></i> CS229-note1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/30/平时积攒的网页/" rel="prev" title="平时积攒的网页">
+                平时积攒的网页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -341,8 +489,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -442,6 +599,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成学习和判别学习算法的区别"><span class="nav-number">1.</span> <span class="nav-text">生成学习和判别学习算法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成学习算法"><span class="nav-number">2.</span> <span class="nav-text">生成学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯判别算法"><span class="nav-number">2.1.</span> <span class="nav-text">高斯判别算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯"><span class="nav-number">2.2.</span> <span class="nav-text">朴素贝叶斯</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -551,6 +724,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
