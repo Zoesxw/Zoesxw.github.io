@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Zoe&#39;s Blog">
 <meta property="og:description" content="日常python代码的模块函数收集。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T12:33:52.274Z">
+<meta property="og:updated_time" content="2017-12-05T12:39:05.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数整理">
 <meta name="twitter:description" content="日常python代码的模块函数收集。">
@@ -385,37 +385,32 @@
 </ul>
 <p>模块：</p>
 <ol>
-<li>sklearn:</li>
-</ol>
+<li><p>sklearn:</p>
 <ul>
-<li>model_selection:<br>  train_test_split(data,test_ratio,seed=42)：将datas分成多个子集。<br>  按层抽取：split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)<pre><code>       for train_index, test_index in split.split(housing, housing [&quot;income_cat&quot;]):
-           strat_train_set = housing.loc[train_index]
-           strat_test_set = housing.loc[test_index]
+<li>model_selection:<br>train_test_split(data,test_ratio,seed=42)：将datas分成多个子集。<br>按层抽取：split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)<pre><code>    for train_index, test_index in split.split(housing, housing [&quot;income_cat&quot;]):
+        strat_train_set = housing.loc[train_index]
+        strat_test_set = housing.loc[test_index]
 </code></pre></li>
 </ul>
-<ol>
-<li>os：用于文件、目录的操作，详见<a href="https://www.cnblogs.com/kaituorensheng/archive/2013/03/18/2965766.html" target="_blank" rel="noopener">python os模块常用命令</a>。</li>
-</ol>
+</li>
+<li><p>os：用于文件、目录的操作，详见<a href="https://www.cnblogs.com/kaituorensheng/archive/2013/03/18/2965766.html" target="_blank" rel="noopener">python os模块常用命令</a>。</p>
 <ul>
 <li>os.path.isdir(path)：如果path是一个存在的目录，返回true，否则返回false。</li>
 <li>os.makedirs(path)：递归创建目录，含子目录。</li>
 <li>os.path.join(path,name)：连接目录和文件名。</li>
 </ul>
-<ol>
-<li>tarfile：压缩解压缩。<a href="http://blog.csdn.net/u010640235/article/details/44218975" target="_blank" rel="noopener">python tarfile模块</a>。</li>
-</ol>
+</li>
+<li><p>tarfile：压缩解压缩。<a href="http://blog.csdn.net/u010640235/article/details/44218975" target="_blank" rel="noopener">python tarfile模块</a>。</p>
 <ul>
 <li>tar=tarfile.open(待解压文件目录)<br>tar.extractall(path=” “)：设置解压路径。<br>tar.close()  //解压</li>
 </ul>
-<ol>
-<li>urllib：操作URL,可以用来爬取数据。<a href="https://www.cnblogs.com/sysu-blackbear/p/3629420.html" target="_blank" rel="noopener">urllib模块中的方法</a>。</li>
-</ol>
+</li>
+<li><p>urllib：操作URL,可以用来爬取数据。<a href="https://www.cnblogs.com/sysu-blackbear/p/3629420.html" target="_blank" rel="noopener">urllib模块中的方法</a>。</p>
 <ul>
 <li>urllib.request.urlretrieve(url,path)：将网页保存到本地。</li>
 </ul>
-<ol>
-<li>pandas：解决数据分析。</li>
-</ol>
+</li>
+<li><p>pandas：解决数据分析。</p>
 <ul>
 <li>pd.read_csv(csv_path)：读取csv文件返回Pandas DataFrame对象，包含所有内容。</li>
 <li>DataFrame.head()：查看DataFrame对象的前几行内容，默认前5行。</li>
@@ -428,24 +423,23 @@
 <li>DataFrame.apply()：对DataFrame对象应用后面的函数，既可以作用于一行或者一列的元素，也可以作用于单个元素。</li>
 <li>DataFrame.drop([“ “],axis=1)：删除列。</li>
 </ul>
-<ol>
-<li>matplotlib：绘图。</li>
-</ol>
+</li>
+<li><p>matplotlib：绘图。</p>
 <ul>
 <li>hist(bins= )：等等参数，绘制直方图。<br>matplotlib.pyplot.show()：显示图形。</li>
 <li>plot():<br>matplotlib.pyplot.show()：显示图形。</li>
 </ul>
-<ol>
-<li>numpy：</li>
-</ol>
+</li>
+<li><p>numpy：</p>
 <ul>
 <li>numpy.random.seed(42)：每次产生相同的随机数据。</li>
 <li>numpy.random.permutation()：打乱一个数组并返回，参数可为数组或int型数字，为数字时，先生成数组相当于numpy.arrange(int)，后打乱数组返回。</li>
 <li>numpy.ceil()：向上取整。</li>
 <li>where(cond,ndarray1,ndarray2)：根据条件cond，选取ndarray1或者ndarray2，返回一个新的ndarray。</li>
 </ul>
-<ol>
-<li>hashlib：提供hash算法的库。哈希算法，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。<br>-hashlib.md5(something).digest()：MD5摘要算法，计算出内容something的MD5值。</li>
+</li>
+<li><p>hashlib：提供hash算法的库。哈希算法，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。<br>-hashlib.md5(something).digest()：MD5摘要算法，计算出内容something的MD5值。</p>
+</li>
 </ol>
 
       
