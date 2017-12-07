@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Zoe&#39;s Blog">
 <meta property="og:description" content="日常python代码的模块函数收集。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-05T12:46:28.424Z">
+<meta property="og:updated_time" content="2017-12-07T06:56:17.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数整理">
 <meta name="twitter:description" content="日常python代码的模块函数收集。">
@@ -388,14 +388,17 @@
 <ul>
 <li>model_selection:<br>train_test_split(data,test_ratio,seed=42)：将datas分成多个子集。<br>按层抽取：split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)<pre><code>    for train_index, test_index in split.split(housing, housing [&quot;income_cat&quot;]):
         strat_train_set = housing.loc[train_index]
-        strat_test_set = housing.loc[test_index]
+        strat_test_set = housing.loc[test_index]  
 </code></pre></li>
+<li>preprocessing：<br>Imputer：用于处理数据中的空值。<br>LabelEncoder：处理非数值的属性。<br>OneHotEncoder：convert integer categorical values into one-hot vectors，比如 <pre><code>          4变成[0,0,0,0,1]。
+</code></pre>LabelBinarizer：结合以上两个效果。<br>MinMaxScaler：用于数据尺度缩放，变成[0,1]间。<br>StandardScaler：同样用于数据尺度缩放。</li>
 </ul>
 <p>os：用于文件、目录的操作，详见<a href="https://www.cnblogs.com/kaituorensheng/archive/2013/03/18/2965766.html" target="_blank" rel="noopener">python os模块常用命令</a>。</p>
 <ul>
 <li>os.path.isdir(path)：如果path是一个存在的目录，返回true，否则返回false。</li>
 <li>os.makedirs(path)：递归创建目录，含子目录。</li>
 <li>os.path.join(path,name)：连接目录和文件名。</li>
+<li>os.chdir(path)：修改当前工作目录。</li>
 </ul>
 <p>tarfile：压缩解压缩。<a href="http://blog.csdn.net/u010640235/article/details/44218975" target="_blank" rel="noopener">python tarfile模块</a>。</p>
 <ul>
@@ -417,6 +420,10 @@
 <li>DataFrame.loc[]：获取数据，里面可以用index对应的一系列True或者False来获取数据，这个True、False构成的向量须为DataFrame对象。</li>
 <li>DataFrame.apply()：对DataFrame对象应用后面的函数，既可以作用于一行或者一列的元素，也可以作用于单个元素。</li>
 <li>DataFrame.drop([“ “],axis=1)：删除列。</li>
+<li>DataFrame.corr()：计算相关系数。</li>
+<li>scatter_matrix()：描述属性间关系。</li>
+<li>DataFrame.dropna()：返回非空数据和索引值。<a href="http://blog.csdn.net/yen_csdn/article/details/53445616" target="_blank" rel="noopener">利用Python Pandas进行数据预处理-数据清洗</a>。</li>
+<li>DataFrame.fillna(median)：空值填充median，mean等。</li>
 </ul>
 <p>matplotlib：绘图。</p>
 <ul>
