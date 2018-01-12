@@ -101,17 +101,17 @@
 
 
 
-<meta name="description" content="日常python代码的模块函数收集。">
+<meta name="description" content="……">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python函数整理">
-<meta property="og:url" content="http://yoursite.com/2017/12/04/python函数整理/index.html">
+<meta property="og:title" content="15日记">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/15日记/index.html">
 <meta property="og:site_name" content="Zoe&#39;s Blog">
-<meta property="og:description" content="日常python代码的模块函数收集。">
+<meta property="og:description" content="……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-07T06:56:18.000Z">
+<meta property="og:updated_time" content="2017-12-15T06:34:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python函数整理">
-<meta name="twitter:description" content="日常python代码的模块函数收集。">
+<meta name="twitter:title" content="15日记">
+<meta name="twitter:description" content="……">
 
 
 
@@ -139,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/04/python函数整理/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/15日记/"/>
 
 
 
 
 
-  <title> python函数整理 | Zoe's Blog </title>
+  <title> 15日记 | Zoe's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +294,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/python函数整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/15日记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zoe">
@@ -315,7 +315,7 @@
             
             
               
-                python函数整理
+                15日记
               
             
           </h1>
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T21:34:06+08:00">
-                2017-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T14:24:59+08:00">
+                2017-12-15
               </time>
             
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2017/12/04/python函数整理/" class="leancloud_visitors" data-flag-title="python函数整理">
+             <span id="/2017/12/15/15日记/" class="leancloud_visitors" data-flag-title="15日记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -377,70 +377,7 @@
       
 
       
-        <p>日常python代码的模块函数收集。<br><a id="more"></a><br>函数：</p>
-<ul>
-<li>hash()：返回对象的哈希值，哈希值是一个整数。</li>
-<li>lambda x: x+1  定义匿名函数y=x+1。</li>
-<li>bytearray(source)：当source为字符串时，按一定的编码转换成字节数组。</li>
-</ul>
-<p>模块：</p>
-<p>sklearn:</p>
-<ul>
-<li>model_selection:<br>train_test_split(data,test_ratio,seed=42)：将datas分成多个子集。<br>按层抽取：split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)<pre><code>    for train_index, test_index in split.split(housing, housing [&quot;income_cat&quot;]):
-        strat_train_set = housing.loc[train_index]
-        strat_test_set = housing.loc[test_index]  
-</code></pre></li>
-<li>preprocessing：<br>Imputer：用于处理数据中的空值。<br>LabelEncoder：处理非数值的属性。<br>OneHotEncoder：convert integer categorical values into one-hot vectors，比如 <pre><code>          4变成[0,0,0,0,1]。
-</code></pre>LabelBinarizer：结合以上两个效果。<br>MinMaxScaler：用于数据尺度缩放，变成[0,1]间。<br>StandardScaler：同样用于数据尺度缩放。</li>
-</ul>
-<p>os：用于文件、目录的操作，详见<a href="https://www.cnblogs.com/kaituorensheng/archive/2013/03/18/2965766.html" target="_blank" rel="noopener">python os模块常用命令</a>。</p>
-<ul>
-<li>os.path.isdir(path)：如果path是一个存在的目录，返回true，否则返回false。</li>
-<li>os.makedirs(path)：递归创建目录，含子目录。</li>
-<li>os.path.join(path,name)：连接目录和文件名。</li>
-<li>os.chdir(path)：修改当前工作目录。</li>
-</ul>
-<p>tarfile：压缩解压缩。<a href="http://blog.csdn.net/u010640235/article/details/44218975" target="_blank" rel="noopener">python tarfile模块</a>。</p>
-<ul>
-<li>tar=tarfile.open(待解压文件目录)<br>tar.extractall(path=” “)：设置解压路径。<br>tar.close()  //解压</li>
-</ul>
-<p>urllib：操作URL,可以用来爬取数据。<a href="https://www.cnblogs.com/sysu-blackbear/p/3629420.html" target="_blank" rel="noopener">urllib模块中的方法</a>。</p>
-<ul>
-<li>urllib.request.urlretrieve(url,path)：将网页保存到本地。</li>
-</ul>
-<p>pandas：解决数据分析。</p>
-<ul>
-<li>pd.read_csv(csv_path)：读取csv文件返回Pandas DataFrame对象，包含所有内容。</li>
-<li>DataFrame.head()：查看DataFrame对象的前几行内容，默认前5行。</li>
-<li>DataFrame.info()：返回DataFrame对象的内容的简要描述，多少行，数值类型，非空值个数等。</li>
-<li>DataFrame[“”].value_counts()：返回DataFrame对象 某个属性的取值有哪些，及每个取值的个数。</li>
-<li>DataFrame.describe()：返回DataFrame对象 数值属性的总结，比如该属性取值的均值、方差、最小值等。</li>
-<li>DataFrame.reset_index()：增加index索引一列。</li>
-<li>DataFrame.iloc[row]：通过行号获取行数据，<a href="http://blog.csdn.net/roamer314/article/details/52179191" target="_blank" rel="noopener">Pandas的loc iloc ix区别</a>。</li>
-<li>DataFrame.loc[]：获取数据，里面可以用index对应的一系列True或者False来获取数据，这个True、False构成的向量须为DataFrame对象。</li>
-<li>DataFrame.apply()：对DataFrame对象应用后面的函数，既可以作用于一行或者一列的元素，也可以作用于单个元素。</li>
-<li>DataFrame.drop([“ “],axis=1)：删除列。</li>
-<li>DataFrame.corr()：计算相关系数。</li>
-<li>scatter_matrix()：描述属性间关系。</li>
-<li>DataFrame.dropna()：返回非空数据和索引值。<a href="http://blog.csdn.net/yen_csdn/article/details/53445616" target="_blank" rel="noopener">利用Python Pandas进行数据预处理-数据清洗</a>。</li>
-<li>DataFrame.fillna(median)：空值填充median，mean等。</li>
-</ul>
-<p>matplotlib：绘图。</p>
-<ul>
-<li>hist(bins= )：等等参数，绘制直方图。<br>matplotlib.pyplot.show()：显示图形。</li>
-<li>plot():<br>matplotlib.pyplot.show()：显示图形。</li>
-</ul>
-<p>numpy：</p>
-<ul>
-<li>numpy.random.seed(42)：每次产生相同的随机数据。</li>
-<li>numpy.random.permutation()：打乱一个数组并返回，参数可为数组或int型数字，为数字时，先生成数组相当于numpy.arrange(int)，后打乱数组返回。</li>
-<li>numpy.ceil()：向上取整。</li>
-<li>where(cond,ndarray1,ndarray2)：根据条件cond，选取ndarray1或者ndarray2，返回一个新的ndarray。</li>
-</ul>
-<p>hashlib：提供hash算法的库。哈希算法，把任意长度的数据转换为一个长度固定的数据串（通常用16进制的字符串表示）。</p>
-<ul>
-<li>hashlib.md5(something).digest()：MD5摘要算法，计算出内容something的MD5值。</li>
-</ul>
+        <p>……<br><a id="more"></a><br>心累累，这一周好像都没干啥子，从周一到周五，前一半时间想着弄caffe微调，最后配置好了，想试一下reid的微调，可是没有讲解，我就最后放弃了。后来想着还是先看那个open-reid吧，ok，干吧。装个pytorch，按照open-reid网站上实现一个例子，就一行调用代码，出现了问题，总之很多问题，找了好久，折腾一两天，问题就在于python2.7.6太旧了，很多ssl啥啥不支持，一开始怎么办，那就装3.5吧，因为pytorch安装支持2.7,3.5及3.6。后来你猜啥，ubuntu上自带有3，然鹅是3.4，呵呵哒，心累累，最后找了些教程装了装。然鹅，不知道为什么就是想弄2.7，再解决那些问题，就卸载重装啊，然后就一直处于出现问题，重装的循环中，真的，贼多的问题。然后刚刚，我放弃了，弄3试试吧，很畅通，没有警告各种，到了最后，呵呵哒，没有GPU，不行，错误……心累累，看来是不能用open-reid了，另谋出路。<br>小结：python2用pip，python3用pip3。</p>
 
       
     </div>
@@ -477,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/04/PCA/" rel="next" title="PCA">
-                <i class="fa fa-chevron-left"></i> PCA
+              <a href="/2017/12/14/python问题/" rel="next" title="python问题">
+                <i class="fa fa-chevron-left"></i> python问题
               </a>
             
           </div>
@@ -487,8 +424,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/14/python问题/" rel="prev" title="python问题">
-                python问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/18/paper-two/" rel="prev" title="paper two">
+                paper two <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
