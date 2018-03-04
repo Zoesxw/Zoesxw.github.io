@@ -1,0 +1,1157 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="此文为TensorFlow-Slim文档的翻译，转载自tensorflow中slim模块api介绍，原文README">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow-slim">
+<meta property="og:url" content="http://yoursite.com/2018/03/04/tensorflow-slim/index.html">
+<meta property="og:site_name" content="Zoe&#39;s Blog">
+<meta property="og:description" content="此文为TensorFlow-Slim文档的翻译，转载自tensorflow中slim模块api介绍，原文README">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-04T13:25:08.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tensorflow-slim">
+<meta name="twitter:description" content="此文为TensorFlow-Slim文档的翻译，转载自tensorflow中slim模块api介绍，原文README">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/04/tensorflow-slim/"/>
+
+
+
+
+
+  <title> tensorflow-slim | Zoe's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?48b321ed2f9cb4a2acda1fddc5857b9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zoe's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Zoe</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/04/tensorflow-slim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                tensorflow-slim
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T13:18:58+08:00">
+                2018-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/04/tensorflow-slim/" class="leancloud_visitors" data-flag-title="tensorflow-slim">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此文为TensorFlow-Slim文档的翻译，转载自<a href="http://blog.csdn.net/guvcolie/article/details/77686555#t2" target="_blank" rel="noopener">tensorflow中slim模块api介绍</a>，原文<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/slim/README.md" target="_blank" rel="noopener">README</a><br><a id="more"></a></p>
+<p>TF-Slim is a lightweight library for defining, training and evaluating complex<br>models in TensorFlow. Components of tf-slim can be freely mixed with native<br>tensorflow, as well as other frameworks, such as tf.contrib.learn.</p>
+<p>TF-Slim是TensorFlow中定义、训练和评估复杂模型的轻量级库。tf-slim的组件可以轻易地和原生Tensorflow框架及其他框架（如tf.contrib.learn）进行整合。</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow.contrib.slim <span class="keyword">as</span> slim</span><br></pre></td></tr></table></figure>
+<h2 id="Why-TF-Slim"><a href="#Why-TF-Slim" class="headerlink" title="Why TF-Slim?"></a>Why TF-Slim?</h2><p>TF-Slim is a library that makes building, training and evaluation neural<br>networks simple:</p>
+<p>TF-Slim使创建、训练及评估神经网络变得简单：</p>
+<ul>
+<li><p>Allows the user to define models much more compactly by eliminating boilerplate code. This is accomplished through the use of <a href="https://www.tensorflow.org/code/tensorflow/contrib/framework/python/ops/arg_scope.py" target="_blank" rel="noopener">argument scoping</a>and numerous high level <a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">layers</a> and <a href="https://www.tensorflow.org/code/tensorflow/contrib/framework/python/ops/variables.py" target="_blank" rel="noopener">variables</a>. These tools increase readability and maintainability, reduce the likelihood of an error from copy-and pasting hyperparameter values and simplifies hyperparameter tuning.</p>
+<p>  允许用户通过消除样板代码来更加紧凑地定义模型，这是通过使用argument scoping和许多高等级的layers和variables来完成的。这些工具提高了可读性和可维护性，减少了因为复制粘贴超参数值而产生错误的可能性，并简化了超参数调整。</p>
+</li>
+<li><p>Makes developing models simple by providing commonly used<a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/regularizers.py" target="_blank" rel="noopener">regularizers</a>.</p>
+<p>  提供常用的regularizers，使开发模型变得简单。</p>
+</li>
+<li><p>Several widely used computer vision models (e.g., VGG, AlexNet) have been<br>developed in slim, and are<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/nets/" target="_blank" rel="noopener">available</a><br>to users. These can either be used as black boxes, or can be extended in various<br>ways, e.g., by adding “multiple heads” to different internal layers.</p>
+<p>  几种广泛使用的计算机视觉模型（如VGG、AlexNet）在slim中已经开发出来，可供用户使用。这些可以用作黑盒子，或者以各种方式扩展，比如向不同的内部层添加”multiple heads”。</p>
+</li>
+<li><p>Slim makes it easy to extend complex models, and to warm start training<br>algorithms by using pieces of pre-existing model checkpoints.</p>
+<p>  Slim使得扩展复杂模型变得很容易，并且可以通过使用预先存在的模型checkpoints来启动训练算法。</p>
+<h2 id="What-are-the-various-components-of-TF-Slim"><a href="#What-are-the-various-components-of-TF-Slim" class="headerlink" title="What are the various components of TF-Slim?"></a>What are the various components of TF-Slim?</h2></li>
+</ul>
+<p>TF-Slim is composed of several parts which were design to exist independently.<br>These include the following main pieces (explained in detail below).</p>
+<p>TF-Slim由独立存在的几个部分组成，包括如下几个部分（详细解释如下）。</p>
+<ul>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/framework/python/ops/arg_scope.py" target="_blank" rel="noopener">arg_scope</a>:<br>provides a new scope named <code>arg_scope</code> that allows a user to define default<br>arguments for specific operations within that scope.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/data/" target="_blank" rel="noopener">data</a>:<br>contains TF-slim’s<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/data/dataset.py" target="_blank" rel="noopener">dataset</a><br>definition,<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/data/data_provider.py" target="_blank" rel="noopener">data providers</a>,<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/data/parallel_reader.py" target="_blank" rel="noopener">parallel_reader</a>,<br>and<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/data/data_decoder.py" target="_blank" rel="noopener">decoding</a><br>utilities.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/evaluation.py" target="_blank" rel="noopener">evaluation</a>:<br>contains routines for evaluating models.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">layers</a>:<br>contains high level layers for building models using tensorflow.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/learning.py" target="_blank" rel="noopener">learning</a>:<br>contains routines for training models.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/losses/python/losses/loss_ops.py" target="_blank" rel="noopener">losses</a>:<br>contains commonly used loss functions.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/metrics/python/ops/metric_ops.py" target="_blank" rel="noopener">metrics</a>:<br>contains popular evaluation metrics.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/nets/" target="_blank" rel="noopener">nets</a>:<br>contains popular network definitions such as<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/nets/vgg.py" target="_blank" rel="noopener">VGG</a><br>and<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/nets/alexnet.py" target="_blank" rel="noopener">AlexNet</a><br>models.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/queues.py" target="_blank" rel="noopener">queues</a>:<br>provides a context manager for easily and safely starting and closing<br>QueueRunners.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/regularizers.py" target="_blank" rel="noopener">regularizers</a>:<br>contains weight regularizers.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/contrib/framework/python/ops/variables.py" target="_blank" rel="noopener">variables</a>:<br>provides convenience wrappers for variable creation and manipulation.</li>
+</ul>
+<ul>
+<li>arg_scope：提供了一个新的scope名为arg_scope，它允许用户在scope内为特定操作定义默认参数。</li>
+<li>data:包含TF-Slim的dataset定义、data providers、parallel_reader及decoding用法。</li>
+<li>evaluation：包含评估模型的例程。</li>
+<li>layers：包含使lear用tensorflow构建模型的高层次图层。</li>
+<li>learning：包含训练模型的例程。</li>
+<li>losses：包含经常使用的loss函数。</li>
+<li>metrics：包含流行的评估指标。</li>
+<li>nets：包含流行的网络定义，如VGG、AlexNet模型。</li>
+<li>queues：提供了一个上下文管理器，可以轻松安全地启动和关闭QueueRunners。</li>
+<li>regularizers：包含权重regularizers。</li>
+<li>variables：为变量的创建和操作提供便利的wrappers。</li>
+</ul>
+<h2 id="Defining-Models"><a href="#Defining-Models" class="headerlink" title="Defining Models"></a>Defining Models</h2><p>Models can be succinctly defined using TF-Slim by combining its variables,<br>layers and scopes. Each of these elements are defined below.</p>
+<p>利用TF-Slim合并variables、layers及scopes可以简洁地定义模型。各元素定义如下。</p>
+<h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>Creating<br><a href="https://www.tensorflow.org/how_tos/variables/index.html" target="_blank" rel="noopener"><code>Variables</code></a><br>in native tensorflow requires either a predefined value or an initialization<br>mechanism (e.g. randomly sampled from a Gaussian). Furthermore, if a variable<br>needs to be created<br>on a specific device, such as a GPU, the specification must be<br><a href="https://www.tensorflow.org/how_tos/using_gpu/index.html" target="_blank" rel="noopener">made explicit</a>.<br>To alleviate the code required for variable creation, TF-Slim provides a set<br>of thin wrapper functions in<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/framework/python/ops/variables.py" target="_blank" rel="noopener">variables.py</a><br>which allow callers to easily define variables.</p>
+<p>想在原生tensorflow中创建variables，要么需要一个预定义值，要么需要一种初始化机制（比如从Gaussian中随机采样）。此外，如果变量需要在特定的设备上创建，比如GPU上，则需要显式指定。为了简化变量创建的代码，TF-Slim在variables.py中提供了一批轻量级的函数封装，从而使调用者可以更加容易地定义变量。</p>
+<p>For example, to create a <code>weight</code> variable, initialize it using a truncated<br>normal distribution, regularize it with an <code>l2_loss</code> and place it on the <code>CPU</code>,<br>one need only declare the following:</p>
+<p>例如，创建一个权值变量weight，用truncated normal分布进行初始化，用L2损失正则化，并放置于CPU中，我们只需要定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">weights = slim.variable(<span class="string">'weights'</span>,</span><br><span class="line">                             shape=[<span class="number">10</span>, <span class="number">10</span>, <span class="number">3</span> , <span class="number">3</span>],</span><br><span class="line">                             initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.1</span>),</span><br><span class="line">                             regularizer=slim.l2_regularizer(<span class="number">0.05</span>),</span><br><span class="line">                             device=<span class="string">'/CPU:0'</span>)</span><br></pre></td></tr></table></figure>
+<p>Note that in native TensorFlow, there are two types of variables: regular<br>variables and local (transient) variables. The vast majority of variables are<br>regular variables: once created, they can be saved to disk using a<br><a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver" target="_blank" rel="noopener">saver</a>.<br>Local variables are those variables that only exist for the duration of a<br>session and are not saved to disk.</p>
+<p>在原生tensorflow中，有两种类型的变量：常规变量和局部（临时）变量。绝大部分都是常规变量，它们一旦创建，可以用Saver保存在磁盘上。局部变量则只在一个session期间存在，且不会保存在磁盘上。</p>
+<p>TF-Slim further differentiates variables by defining <em>model variables</em>, which<br>are variables that represent parameters of a model. Model variables are<br>trained or fine-tuned during learning and are loaded<br>from a checkpoint during evaluation or inference. Examples include the variables<br>created by a <code>slim.fully_connected</code> or <code>slim.conv2d</code> layer. Non-model variables<br>are all other variables that are used during learning or evaluation but are not<br>required for actually performing inference. For example, the <code>global_step</code> is<br>a variable using during learning and evaluation but it is not actually part of<br>the model. Similarly, moving average variables might mirror model variables,<br>but the moving averages are not themselves model variables.</p>
+<p>TF-Slim通过定义model variables可以进一步区分变量，这种变量代表一个模型的参数。模型变量在学习阶段被训练或微调，在评估和预测阶段从checkpoint中加载，比如通过slim.fully_connected或slim.conv2d创建的变量。非模型变量是在学习或评估阶段使用，但不会在预测阶段起作用的变量。例如global_step，它在学习和评估阶段使用，但不是模型的一部分。类似地，移动均值可以mirror模型参数，但是它们本身不是模型变量。</p>
+<p>Both model variables and regular variables can be easily created and retrieved<br>via TF-Slim:</p>
+<p>通过TF-Slim，模型变量和常规变量都可以很容易地创建和获取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Model Variables</span></span><br><span class="line">weights = slim.model_variable(<span class="string">'weights'</span>,</span><br><span class="line">                              shape=[<span class="number">10</span>, <span class="number">10</span>, <span class="number">3</span> , <span class="number">3</span>],</span><br><span class="line">                              initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.1</span>),</span><br><span class="line">                              regularizer=slim.l2_regularizer(<span class="number">0.05</span>),</span><br><span class="line">                              device=<span class="string">'/CPU:0'</span>)</span><br><span class="line">model_variables = slim.get_model_variables()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Regular variables</span></span><br><span class="line">my_var = slim.variable(<span class="string">'my_var'</span>,</span><br><span class="line">                       shape=[<span class="number">20</span>, <span class="number">1</span>],</span><br><span class="line">                       initializer=tf.zeros_initializer())</span><br><span class="line">regular_variables_and_model_variables = slim.get_variables()</span><br></pre></td></tr></table></figure>
+<p>How does this work? When you create a model variable via TF-Slim’s layers or<br>directly via the <code>slim.model_variable</code> function, TF-Slim adds the variable to<br>the <code>tf.GraphKeys.MODEL_VARIABLES</code> collection. What if you have your own<br>custom layers or variable creation routine but still want TF-Slim to manage or<br>be aware of your model variables? TF-Slim provides a convenience function for<br>adding the model variable to its collection:</p>
+<p>这是怎么起作用的呢？当你通过TF-Slim’s layers或者直接通过slim.model_variable函数创建一个模型变量，TF-Slim会把这个变量添加到tf.GraphKeys.MODEL_VARIABLES这个集合中。那我们自己的网络层变量怎么让TF-Slim管理呢？TF-Slim提供了一个很方便的函数可以将模型的变量添加到集合中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_model_variable = CreateViaCustomCode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Letting TF-Slim know about the additional variable.</span></span><br><span class="line">slim.add_model_variable(my_model_variable)</span><br></pre></td></tr></table></figure>
+<h3 id="Layers"><a href="#Layers" class="headerlink" title="Layers"></a>Layers</h3><p>While the set of TensorFlow operations is quite extensive, developers of<br>neural networks typically think of models in terms of higher level concepts<br>like “layers”, “losses”, “metrics”, and “networks”. A layer,<br>such as a Convolutional Layer, a Fully Connected Layer or a BatchNorm Layer<br>are more abstract than a single TensorFlow operation and typically involve<br>several operations. Furthermore, a layer usually (but not always) has<br>variables (tunable parameters) associated with it, unlike more primitive<br>operations. For example, a Convolutional Layer in a neural network<br>is composed of several low level operations:</p>
+<p>tensorflow的操作符集合是十分广泛的，神经网络开发者通常会以更高层的概念，比如”layers”、”losses”、”metrics”及”networks”去考虑模型。一个层，比如卷积层、全连接层或bn层，要比一个单独的tensorflow操作符更抽象，并且通常会包含若干操作符。此外，和原始操作符不同，一个层经常（不总是）有一些与自己相关的变量（可调参数）。例如，在神经网络中，一个卷积层由许多底层操作符组成：</p>
+<ol>
+<li>Creating the weight and bias variables</li>
+<li>Convolving the weights with the input from the previous layer</li>
+<li>Adding the biases to the result of the convolution.</li>
+<li>Applying an activation function.</li>
+<li></li>
+<li>创建权重、偏置变量</li>
+<li>将来自上一层的数据和权值进行卷积</li>
+<li>在卷积结果上加上偏置</li>
+<li>应用激活函数</li>
+</ol>
+<p>Using only plain TensorFlow code, this can be rather laborious:</p>
+<p>如果只用普通的tensorflow代码，干这个事是相当的费事：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">input = ...</span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'conv1_1'</span>) <span class="keyword">as</span> scope:</span><br><span class="line">  kernel = tf.Variable(tf.truncated_normal([<span class="number">3</span>, <span class="number">3</span>, <span class="number">64</span>, <span class="number">128</span>], dtype=tf.float32,</span><br><span class="line">                                           stddev=<span class="number">1e-1</span>), name=<span class="string">'weights'</span>)</span><br><span class="line">  conv = tf.nn.conv2d(input, kernel, [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br><span class="line">  biases = tf.Variable(tf.constant(<span class="number">0.0</span>, shape=[<span class="number">128</span>], dtype=tf.float32),</span><br><span class="line">                       trainable=<span class="keyword">True</span>, name=<span class="string">'biases'</span>)</span><br><span class="line">  bias = tf.nn.bias_add(conv, biases)</span><br><span class="line">  conv1 = tf.nn.relu(bias, name=scope)</span><br></pre></td></tr></table></figure>
+<p>To alleviate the need to duplicate this code repeatedly, TF-Slim provides a<br>number of convenient operations defined at the more abstract level of<br>neural network layers. For example, compare the code above to an invocation<br>of the corresponding TF-Slim code:</p>
+<p>为了缓解重复这些代码，TF-Slim在更抽象的神经网络层的层面上提供了大量方便使用的操作符。比如，将上面的代码和TF-Slim响应的代码调用进行比较：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input = ...</span><br><span class="line">net = slim.conv2d(input, <span class="number">128</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv1_1'</span>)</span><br></pre></td></tr></table></figure>
+<p>TF-Slim provides standard implementations for numerous components for building<br>neural networks. These include:</p>
+<p>TF-Slim提供了标准接口用于组建神经网络，包括：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>TF-Slim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BiasAdd</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.bias_add</a></td>
+</tr>
+<tr>
+<td>BatchNorm</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.batch_norm</a></td>
+</tr>
+<tr>
+<td>Conv2d</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.conv2d</a></td>
+</tr>
+<tr>
+<td>Conv2dInPlane</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.conv2d_in_plane</a></td>
+</tr>
+<tr>
+<td>Conv2dTranspose (Deconv)</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.conv2d_transpose</a></td>
+</tr>
+<tr>
+<td>FullyConnected</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.fully_connected</a></td>
+</tr>
+<tr>
+<td>AvgPool2D</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.avg_pool2d</a></td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.dropout</a></td>
+</tr>
+<tr>
+<td>Flatten</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.flatten</a></td>
+</tr>
+<tr>
+<td>MaxPool2D</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.max_pool2d</a></td>
+</tr>
+<tr>
+<td>OneHotEncoding</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.one_hot_encoding</a></td>
+</tr>
+<tr>
+<td>SeparableConv2</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.separable_conv2d</a></td>
+</tr>
+<tr>
+<td>UnitNorm</td>
+<td><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">slim.unit_norm</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TF-Slim also provides two meta-operations called <code>repeat</code> and <code>stack</code> that<br>allow users to repeatedly perform the same operation. For example, consider the<br>following snippet from the<br><a href="https://www.robots.ox.ac.uk/~vgg/research/very_deep/" target="_blank" rel="noopener">VGG</a> network whose layers<br>perform several convolutions in a row between pooling layers:</p>
+<p>TF-Slim也提供了两个元运算符——repeat和stack，允许用户可以重复地使用相同的运算符。例如，VGG网络的一个片段，这个网络在两个池化层之间就有许多卷积层的堆叠：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">net = ...</span><br><span class="line">net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3_1'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3_2'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3_3'</span>)</span><br><span class="line">net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool2'</span>)</span><br></pre></td></tr></table></figure>
+<p>One way to reduce this code duplication would be via a <code>for</code> loop:</p>
+<p>一种减少这种代码重复的方法是使用for循环：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">net = ...</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">  net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3_%d'</span> % (i+<span class="number">1</span>))</span><br><span class="line">net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool2'</span>)</span><br></pre></td></tr></table></figure>
+<p>This can be made even cleaner by using TF-Slim’s <code>repeat</code> operation:</p>
+<p>若使用TF-Slim的repeat操作符，代码看起来会更简洁：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net = slim.repeat(net, <span class="number">3</span>, slim.conv2d, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3'</span>)</span><br><span class="line">net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool2'</span>)</span><br></pre></td></tr></table></figure>
+<p>Notice that the <code>slim.repeat</code> not only applies the same argument in-line, it<br>also is smart enough to unroll the scopes such that the scopes assigned to each<br>subsequent call of <code>slim.conv2d</code> are appended with an underscore and iteration<br>number. More concretely, the scopes in the example above would be named<br>‘conv3/conv3_1’, ‘conv3/conv3_2’ and ‘conv3/conv3_3’.</p>
+<p>slim.repeat不但可以在一行中使用相同的参数，而且还能智能地展开scope，即每个后续的slim.conv2d调用所对应的scope都会追加下划线及迭代数字。更具体地讲，上面代码的scope分别命名为’conv3/conv3_1’, ‘conv3/conv3_2’ and ‘conv3/conv3_3’.</p>
+<p>Furthermore, TF-Slim’s <code>slim.stack</code> operator allows a caller to repeatedly apply<br>the same operation with different arguments to create a <em>stack</em> or tower of<br>layers. <code>slim.stack</code> also creates a new <code>tf.variable_scope</code> for each<br>operation created. For example, a simple way to create a Multi-Layer Perceptron<br>(MLP):</p>
+<p>除此之外，TF-Slim的slim.stack操作符允许调用者用不同的参数重复使用相同的操作符来创建一个stack或网络层塔。slim.stack也会为每个创建的操作符生成一个新的tf.variable_scope。例如，下面是一个简单的方法去创建Multi-Layer Perceptron（MLP）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Verbose way:</span></span><br><span class="line">x = slim.fully_connected(x, <span class="number">32</span>, scope=<span class="string">'fc/fc_1'</span>)</span><br><span class="line">x = slim.fully_connected(x, <span class="number">64</span>, scope=<span class="string">'fc/fc_2'</span>)</span><br><span class="line">x = slim.fully_connected(x, <span class="number">128</span>, scope=<span class="string">'fc/fc_3'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Equivalent, TF-Slim way using slim.stack:</span></span><br><span class="line">slim.stack(x, slim.fully_connected, [<span class="number">32</span>, <span class="number">64</span>, <span class="number">128</span>], scope=<span class="string">'fc'</span>)</span><br></pre></td></tr></table></figure>
+<p>In this example, <code>slim.stack</code> calls <code>slim.fully_connected</code> three times passing<br>the output of one invocation of the function to the next. However, the number of<br>hidden units in each invocation changes from 32 to 64 to 128. Similarly, one<br>can use stack to simplify a tower of multiple convolutions:</p>
+<p>在这个例子中，slim.stack调用slim.fully_connected三次，前一个层的输出是下一层的输入。而每个网络层的输出通道数从32变到64，再到128。同样，我们可以用stack简化一个多卷积层塔：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Verbose way:</span></span><br><span class="line">x = slim.conv2d(x, <span class="number">32</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'core/core_1'</span>)</span><br><span class="line">x = slim.conv2d(x, <span class="number">32</span>, [<span class="number">1</span>, <span class="number">1</span>], scope=<span class="string">'core/core_2'</span>)</span><br><span class="line">x = slim.conv2d(x, <span class="number">64</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'core/core_3'</span>)</span><br><span class="line">x = slim.conv2d(x, <span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>], scope=<span class="string">'core/core_4'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using stack:</span></span><br><span class="line">slim.stack(x, slim.conv2d, [(<span class="number">32</span>, [<span class="number">3</span>, <span class="number">3</span>]), (<span class="number">32</span>, [<span class="number">1</span>, <span class="number">1</span>]), (<span class="number">64</span>, [<span class="number">3</span>, <span class="number">3</span>]), (<span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>])], scope=<span class="string">'core'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Scopes"><a href="#Scopes" class="headerlink" title="Scopes"></a>Scopes</h3><p>In addition to the types of scope mechanisms in TensorFlow<br>(<a href="https://www.tensorflow.org/api_docs/python/tf/name_scope" target="_blank" rel="noopener">name_scope</a>,<br><a href="https://www.tensorflow.org/api_docs/python/tf/variable_scope" target="_blank" rel="noopener">variable_scope</a>,<br>TF-Slim adds a new scoping mechanism called<br><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/framework/arg_scope" target="_blank" rel="noopener">arg_scope</a>,<br>This new scope allows a user to specify one or more operations and a set of<br>arguments which will be passed to each of the operations defined in the<br><code>arg_scope</code>. This functionality is best illustrated by example. Consider the<br>following code snippet:</p>
+<p>除了tensorflow中自带的scope机制类型（name_scope, variable_scope）外, TF-Slim添加了一种叫做arg_scope的scope机制。这种scope允许用户在arg_scope中指定若干操作符以及一批参数，这些参数会传给前面所有的操作符中。参见以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">net = slim.conv2d(inputs, <span class="number">64</span>, [<span class="number">11</span>, <span class="number">11</span>], <span class="number">4</span>, padding=<span class="string">'SAME'</span>,</span><br><span class="line">                  weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>),</span><br><span class="line">                  weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>), scope=<span class="string">'conv1'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">128</span>, [<span class="number">11</span>, <span class="number">11</span>], padding=<span class="string">'VALID'</span>,</span><br><span class="line">                  weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>),</span><br><span class="line">                  weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>), scope=<span class="string">'conv2'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">11</span>, <span class="number">11</span>], padding=<span class="string">'SAME'</span>,</span><br><span class="line">                  weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>),</span><br><span class="line">                  weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>), scope=<span class="string">'conv3'</span>)</span><br></pre></td></tr></table></figure>
+<p>It should be clear that these three convolution layers share many of the same<br>hyperparameters. Two have the same padding, all three have the same<br>weights_initializer and weight_regularizer. This code is hard to read and<br>contains a lot of repeated values that should be factored out. One solution<br>would be to specify default values using variables:</p>
+<p>很明显这三个卷积层有很多超参数都是相同的。有两个卷积层有相同的padding设置，而且这三个卷积层都有相同的weights_initializer（权值初始化器）和weight_regularizer（权值正则化器）。这段代码很难读，且包含了很多重复的参数值。一种解决办法是用变量指定默认值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">padding = <span class="string">'SAME'</span></span><br><span class="line">initializer = tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>)</span><br><span class="line">regularizer = slim.l2_regularizer(<span class="number">0.0005</span>)</span><br><span class="line">net = slim.conv2d(inputs, <span class="number">64</span>, [<span class="number">11</span>, <span class="number">11</span>], <span class="number">4</span>,</span><br><span class="line">                  padding=padding,</span><br><span class="line">                  weights_initializer=initializer,</span><br><span class="line">                  weights_regularizer=regularizer,</span><br><span class="line">                  scope=<span class="string">'conv1'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">128</span>, [<span class="number">11</span>, <span class="number">11</span>],</span><br><span class="line">                  padding=<span class="string">'VALID'</span>,</span><br><span class="line">                  weights_initializer=initializer,</span><br><span class="line">                  weights_regularizer=regularizer,</span><br><span class="line">                  scope=<span class="string">'conv2'</span>)</span><br><span class="line">net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">11</span>, <span class="number">11</span>],</span><br><span class="line">                  padding=padding,</span><br><span class="line">                  weights_initializer=initializer,</span><br><span class="line">                  weights_regularizer=regularizer,</span><br><span class="line">                  scope=<span class="string">'conv3'</span>)</span><br></pre></td></tr></table></figure>
+<p>This solution ensures that all three convolutions share the exact same parameter<br>values but doesn’t reduce completely the code clutter. By using an <code>arg_scope</code>,<br>we can both ensure that each layer uses the same values and simplify the code:</p>
+<p>这种方式可以确保这三个卷积层共享相同的参数值，但是仍然没有减少代码规模。通过使用arg_scope，我们既能确保每层共享参数值，又能精简代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> slim.arg_scope([slim.conv2d], padding=<span class="string">'SAME'</span>,</span><br><span class="line">                    weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>)</span><br><span class="line">                    weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>)):</span><br><span class="line">  net = slim.conv2d(inputs, <span class="number">64</span>, [<span class="number">11</span>, <span class="number">11</span>], scope=<span class="string">'conv1'</span>)</span><br><span class="line">  net = slim.conv2d(net, <span class="number">128</span>, [<span class="number">11</span>, <span class="number">11</span>], padding=<span class="string">'VALID'</span>, scope=<span class="string">'conv2'</span>)</span><br><span class="line">  net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">11</span>, <span class="number">11</span>], scope=<span class="string">'conv3'</span>)</span><br></pre></td></tr></table></figure>
+<p>As the example illustrates, the use of arg_scope makes the code cleaner,<br>simpler and easier to maintain. Notice that while argument values are specified<br>in the arg_scope, they can be overwritten locally. In particular, while<br>the padding argument has been set to ‘SAME’, the second convolution overrides<br>it with the value of ‘VALID’.</p>
+<p>如例所示，arg_scope使代码更简洁且易于维护。注意，在arg_scope中被指定的参数值，也可以在局部位置进行覆盖。比如，padding参数设置为’SAME’, 而第二个卷积层仍然可以通过把它设为’VALID’而覆盖掉arg_scope中的默认设置。</p>
+<p>One can also nest <code>arg_scopes</code> and use multiple operations in the same scope.<br>For example:</p>
+<p>我们可以嵌套arg_scope, 也可以在一个scope中指定多个操作符，例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> slim.arg_scope([slim.conv2d, slim.fully_connected],</span><br><span class="line">                      activation_fn=tf.nn.relu,</span><br><span class="line">                      weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.01</span>),</span><br><span class="line">                      weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>)):</span><br><span class="line">  <span class="keyword">with</span> slim.arg_scope([slim.conv2d], stride=<span class="number">1</span>, padding=<span class="string">'SAME'</span>):</span><br><span class="line">    net = slim.conv2d(inputs, <span class="number">64</span>, [<span class="number">11</span>, <span class="number">11</span>], <span class="number">4</span>, padding=<span class="string">'VALID'</span>, scope=<span class="string">'conv1'</span>)</span><br><span class="line">    net = slim.conv2d(net, <span class="number">256</span>, [<span class="number">5</span>, <span class="number">5</span>],</span><br><span class="line">                      weights_initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.03</span>),</span><br><span class="line">                      scope=<span class="string">'conv2'</span>)</span><br><span class="line">    net = slim.fully_connected(net, <span class="number">1000</span>, activation_fn=<span class="keyword">None</span>, scope=<span class="string">'fc'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>In this example, the first <code>arg_scope</code> applies the same <code>weights_initializer</code><br>and <code>weights_regularizer</code> arguments to the <code>conv2d</code> and <code>fully_connected</code> layers<br>in its scope. In the second <code>arg_scope</code>, additional default arguments to<br><code>conv2d</code> only are specified.</p>
+<p>在这个例子中，第一个arg_scope对处于它的scope中的conv2d和fully_connected操作层应用相同的weights_initializer andweights_regularizer参数。在第二个arg_scope中，默认参数只是在conv2d中指定。</p>
+<h3 id="Working-Example-Specifying-the-VGG16-Layers"><a href="#Working-Example-Specifying-the-VGG16-Layers" class="headerlink" title="Working Example: Specifying the VGG16 Layers"></a>Working Example: Specifying the VGG16 Layers</h3><p>By combining TF-Slim Variables, Operations and scopes, we can write a normally<br>very complex network with very few lines of code. For example, the entire<br><a href="https://www.robots.ox.ac.uk/~vgg/research/very_deep/" target="_blank" rel="noopener">VGG</a> architecture can be<br>defined with just the following snippet:</p>
+<p>通过整合TF-Slim的变量、操作符和scope，我们可以用寥寥几行代码写一个通常非常复杂的网络。例如，完整的VGG结构只需要用下面的一小段代码定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vgg16</span><span class="params">(inputs)</span>:</span></span><br><span class="line">  <span class="keyword">with</span> slim.arg_scope([slim.conv2d, slim.fully_connected],</span><br><span class="line">                      activation_fn=tf.nn.relu,</span><br><span class="line">                      weights_initializer=tf.truncated_normal_initializer(<span class="number">0.0</span>, <span class="number">0.01</span>),</span><br><span class="line">                      weights_regularizer=slim.l2_regularizer(<span class="number">0.0005</span>)):</span><br><span class="line">    net = slim.repeat(inputs, <span class="number">2</span>, slim.conv2d, <span class="number">64</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv1'</span>)</span><br><span class="line">    net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool1'</span>)</span><br><span class="line">    net = slim.repeat(net, <span class="number">2</span>, slim.conv2d, <span class="number">128</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv2'</span>)</span><br><span class="line">    net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool2'</span>)</span><br><span class="line">    net = slim.repeat(net, <span class="number">3</span>, slim.conv2d, <span class="number">256</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv3'</span>)</span><br><span class="line">    net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool3'</span>)</span><br><span class="line">    net = slim.repeat(net, <span class="number">3</span>, slim.conv2d, <span class="number">512</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv4'</span>)</span><br><span class="line">    net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool4'</span>)</span><br><span class="line">    net = slim.repeat(net, <span class="number">3</span>, slim.conv2d, <span class="number">512</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv5'</span>)</span><br><span class="line">    net = slim.max_pool2d(net, [<span class="number">2</span>, <span class="number">2</span>], scope=<span class="string">'pool5'</span>)</span><br><span class="line">    net = slim.fully_connected(net, <span class="number">4096</span>, scope=<span class="string">'fc6'</span>)</span><br><span class="line">    net = slim.dropout(net, <span class="number">0.5</span>, scope=<span class="string">'dropout6'</span>)</span><br><span class="line">    net = slim.fully_connected(net, <span class="number">4096</span>, scope=<span class="string">'fc7'</span>)</span><br><span class="line">    net = slim.dropout(net, <span class="number">0.5</span>, scope=<span class="string">'dropout7'</span>)</span><br><span class="line">    net = slim.fully_connected(net, <span class="number">1000</span>, activation_fn=<span class="keyword">None</span>, scope=<span class="string">'fc8'</span>)</span><br><span class="line">  <span class="keyword">return</span> net</span><br></pre></td></tr></table></figure>
+<h2 id="Training-Models"><a href="#Training-Models" class="headerlink" title="Training Models"></a>Training Models</h2><p>Training Tensorflow models requires a model, a loss function, the gradient<br>computation and a training routine that iteratively computes the gradients<br>of the model weights relative to the loss and updates the weights accordingly.<br>TF-Slim provides both common loss functions and a set of helper functions<br>that run the training and evaluation routines.</p>
+<p>训练一个tensorflow模型，需要一个网络模型、一个损失函数、梯度计算方式和用于迭代计算模型权重的训练过程。TF-Slim提供了损失函数，同时也提供了一批运行训练和评估模型的帮助函数。</p>
+<h3 id="Losses"><a href="#Losses" class="headerlink" title="Losses"></a>Losses</h3><p>The loss function defines a quantity that we want to minimize. For<br>classification problems, this is typically the cross entropy between the true<br>distribution and the predicted probability distribution across<br>classes. For regression problems, this is often the sum-of-squares differences<br>between the predicted and true values.</p>
+<p>损失函数定义了我们想最小化的量。对于分类问题，它通常是真实分布和预测概率分布的交叉熵。对于回归问题，它通常是真实值和预测值的平方和。</p>
+<p>Certain models, such as multi-task<br>learning models, require the use of multiple loss functions simultaneously. In<br>other words, the loss function ultimately being minimized is the sum of various<br>other loss functions. For example, consider a model that predicts both<br>the type of scene in an image as well as the depth from the<br>camera of each pixel. This model’s loss function would be the sum of the<br>classification loss and depth prediction loss.</p>
+<p>对于特定的模型，比如多任务学习模型，可能需要同时使用多个损失函数。换句话说，正在最小化的损失函数是其他一些损失函数的和。例如，有一个模型既要预测图像中场景的类型，又要预测每个像素的深度。那这个模型的损失函数就是分类损失和深度预测损失的和。</p>
+<p>TF-Slim provides an easy-to-use mechanism for defining and keeping track of<br>loss functions via the<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/losses/python/losses/loss_ops.py" target="_blank" rel="noopener">losses</a><br>module. Consider the simple case where we want to train the VGG network:</p>
+<p>TF-Slim通过losses模块，提供了一种易用的机制去定义和跟踪损失函数。看一个简单的例子，我们想训练VGG网络：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> tensorflow.contrib.slim.nets <span class="keyword">as</span> nets</span><br><span class="line">vgg = nets.vgg</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the images and labels.</span></span><br><span class="line">images, labels = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model.</span></span><br><span class="line">predictions, _ = vgg.vgg_16(images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the loss functions and get the total loss.</span></span><br><span class="line">loss = slim.losses.softmax_cross_entropy(predictions, labels)</span><br></pre></td></tr></table></figure>
+<p>In this example, we start by creating the model (using TF-Slim’s VGG<br>implementation), and add the standard classification loss. Now, lets turn<br>to the case where we have a multi-task model that produces multiple outputs:</p>
+<p>在上面的例子中，我们首先创建了模型（用TF-Slim的VGG接口实现），并添加了标准的分类损失。现在，我们再看一个产生多输出的多任务模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Load the images and labels.</span></span><br><span class="line">images, scene_labels, depth_labels = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model.</span></span><br><span class="line">scene_predictions, depth_predictions = CreateMultiTaskModel(images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the loss functions and get the total loss.</span></span><br><span class="line">classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene_labels)</span><br><span class="line">sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The following two lines have the same effect:</span></span><br><span class="line">total_loss = classification_loss + sum_of_squares_loss</span><br><span class="line">total_loss = slim.losses.get_total_loss(add_regularization_losses=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<p>In this example, we have two losses which we add by calling<br><code>slim.losses.softmax_cross_entropy</code> and <code>slim.losses.sum_of_squares</code>. We can<br>obtain the total loss by adding them together (<code>total_loss</code>) or by calling<br><code>slim.losses.get_total_loss()</code>. How did this work?<br>When you create a loss function via TF-Slim, TF-Slim adds the loss to a<br>special TensorFlow collection of loss functions. This enables you to either<br>manage the total loss manually, or allow TF-Slim to manage them for you.</p>
+<p>在这个例子中，我们有两个损失，分别是通过slim.losses.softmax_cross_entropy和 slim.losses.sum_of_squares得到的。我们既可以通过相加得到total_loss，也可以通过slim.losses.get_total_loss()得到total_loss。这是怎么做到的呢？当你通过TF-Slim创建一个损失函数时，TF-Slim会把损失加入到一个特殊的Tensorflow的损失函数集合中。这样你既可以手动管理损失函数，也可以托管给TF-Slim。</p>
+<p>What if you want to let TF-Slim manage the losses for you but have a custom loss<br>function?<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/losses/python/losses/loss_ops.py" target="_blank" rel="noopener">loss_ops.py</a><br>also has a function that adds this loss to TF-Slims collection. For example:</p>
+<p>如果我们有一个自定义的损失函数，现在也想托管给TF-Slim，该怎么做呢？loss_ops.py也有一个函数可以将这个损失函数加入到TF-Slim集合中。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Load the images and labels.</span></span><br><span class="line">images, scene_labels, depth_labels, pose_labels = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model.</span></span><br><span class="line">scene_predictions, depth_predictions, pose_predictions = CreateMultiTaskModel(images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the loss functions and get the total loss.</span></span><br><span class="line">classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene_labels)</span><br><span class="line">sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)</span><br><span class="line">pose_loss = MyCustomLossFunction(pose_predictions, pose_labels)</span><br><span class="line">slim.losses.add_loss(pose_loss) <span class="comment"># Letting TF-Slim know about the additional loss.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The following two ways to compute the total loss are equivalent:</span></span><br><span class="line">regularization_loss = tf.add_n(slim.losses.get_regularization_losses())</span><br><span class="line">total_loss1 = classification_loss + sum_of_squares_loss + pose_loss + regularization_loss</span><br><span class="line"></span><br><span class="line"><span class="comment"># (Regularization Loss is included in the total loss by default).</span></span><br><span class="line">total_loss2 = slim.losses.get_total_loss()</span><br></pre></td></tr></table></figure>
+<p>In this example, we can again either produce the total loss function manually<br>or let TF-Slim know about the additional loss and let TF-Slim handle the losses.</p>
+<p>这个例子中，我们同样既可以手动管理损失函数，也可以让TF-Slim知晓这个自定义损失函数，然后托管给TF-Slim。</p>
+<h3 id="Training-Loop"><a href="#Training-Loop" class="headerlink" title="Training Loop"></a>Training Loop</h3><p>TF-Slim provides a simple but powerful set of tools for training models<br>found in<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/learning.py" target="_blank" rel="noopener">learning.py</a>.<br>These include a Train function that repeatedly measures the loss, computes<br>gradients and saves the model to disk, as well as several convenience functions<br>for manipulating gradients. For example, once we’ve<br>specified the model, the loss function and the optimization scheme, we can<br>call <code>slim.learning.create_train_op</code> and <code>slim.learning.train</code> to perform the<br>optimization:</p>
+<p>在learning.py中，TF-Slim提供了简单却非常强大的训练模型的工具集。包括Train函数，可以重复地测量损失、计算梯度以及保存模型到磁盘中，还有一些方便的函数用于操作梯度。例如，当我们定义好了模型、损失函数以及优化方式，我们就可以调用slim.learning.create_train_op和<br>slim.learning.train 去执行优化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g = tf.Graph()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model and specify the losses...</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">total_loss = slim.losses.get_total_loss()</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create_train_op ensures that each time we ask for the loss, the update_ops</span></span><br><span class="line"><span class="comment"># are run and the gradients being computed are applied too.</span></span><br><span class="line">train_op = slim.learning.create_train_op(total_loss, optimizer)</span><br><span class="line">logdir = ... <span class="comment"># Where checkpoints are stored.</span></span><br><span class="line"></span><br><span class="line">slim.learning.train(</span><br><span class="line">    train_op,</span><br><span class="line">    logdir,</span><br><span class="line">    number_of_steps=<span class="number">1000</span>,</span><br><span class="line">    save_summaries_secs=<span class="number">300</span>,</span><br><span class="line">    save_interval_secs=<span class="number">600</span>):</span><br></pre></td></tr></table></figure>
+<p>In this example, <code>slim.learning.train</code> is provided with the <code>train_op</code> which is<br>used to (a) compute the loss and (b) apply the gradient step. <code>logdir</code> specifies<br>the directory where the checkpoints and event files are stored. We can limit the<br>number of gradient steps taken to any number. In this case, we’ve asked for<br><code>1000</code> steps to be taken. Finally, <code>save_summaries_secs=300</code> indicates that<br>we’ll compute summaries every 5 minutes and <code>save_interval_secs=600</code> indicates<br>that we’ll save a model checkpoint every 10 minutes.</p>
+<p>在该例中，slim.learning.train根据train_op计算损失、应用梯度step。logdir指定了checkpoints和event文件的存储路径。我们可以限制梯度step到任何数值。这里我们采用1000步。最后，save_summaries_secs=300表示每5分钟计算一次summaries，save_interval_secs=600表示每10分钟保存一次模型的checkpoint。</p>
+<h3 id="Working-Example-Training-the-VGG16-Model"><a href="#Working-Example-Training-the-VGG16-Model" class="headerlink" title="Working Example: Training the VGG16 Model"></a>Working Example: Training the VGG16 Model</h3><p>To illustrate this, lets<br>examine the following sample of training the VGG network:</p>
+<p>为了说明，让我们测试以下训练VGG的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> tensorflow.contrib.slim.nets <span class="keyword">as</span> nets</span><br><span class="line"></span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line">vgg = nets.vgg</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">train_log_dir = ...</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> tf.gfile.Exists(train_log_dir):</span><br><span class="line">  tf.gfile.MakeDirs(train_log_dir)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Graph().as_default():</span><br><span class="line">  <span class="comment"># Set up the data loading:</span></span><br><span class="line">  images, labels = ...</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Define the model:</span></span><br><span class="line">  predictions = vgg.vgg_16(images, is_training=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Specify the loss function:</span></span><br><span class="line">  slim.losses.softmax_cross_entropy(predictions, labels)</span><br><span class="line"></span><br><span class="line">  total_loss = slim.losses.get_total_loss()</span><br><span class="line">  tf.summary.scalar(<span class="string">'losses/total_loss'</span>, total_loss)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Specify the optimization scheme:</span></span><br><span class="line">  optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="number">.001</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># create_train_op that ensures that when we evaluate it to get the loss,</span></span><br><span class="line">  <span class="comment"># the update_ops are done and the gradient updates are computed.</span></span><br><span class="line">  train_tensor = slim.learning.create_train_op(total_loss, optimizer)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Actually runs training.</span></span><br><span class="line">  slim.learning.train(train_tensor, train_log_dir)</span><br></pre></td></tr></table></figure>
+<h2 id="Fine-Tuning-Existing-Models"><a href="#Fine-Tuning-Existing-Models" class="headerlink" title="Fine-Tuning Existing Models"></a>Fine-Tuning Existing Models</h2><h3 id="Brief-Recap-on-Restoring-Variables-from-a-Checkpoint"><a href="#Brief-Recap-on-Restoring-Variables-from-a-Checkpoint" class="headerlink" title="Brief Recap on Restoring Variables from a Checkpoint"></a>Brief Recap on Restoring Variables from a Checkpoint</h3><p>After a model has been trained, it can be restored using <code>tf.train.Saver()</code><br>which restores <code>Variables</code> from a given checkpoint. For many cases,<br><code>tf.train.Saver()</code> provides a simple mechanism to restore all or just a<br>few variables.</p>
+<p>在一个模型训练完成后，我们可以用tf.train.Saver()通过指定checkpoing加载variables的方式加载这个模型。对于很多情况，tf.train.Saver()提供了一种简单的机制去加载所有或一些varialbes变量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create some variables.</span></span><br><span class="line">v1 = tf.Variable(..., name=<span class="string">"v1"</span>)</span><br><span class="line">v2 = tf.Variable(..., name=<span class="string">"v2"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="comment"># Add ops to restore all the variables.</span></span><br><span class="line">restorer = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add ops to restore some variables.</span></span><br><span class="line">restorer = tf.train.Saver([v1, v2])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Later, launch the model, use the saver to restore variables from disk, and</span></span><br><span class="line"><span class="comment"># do some work with the model.</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  <span class="comment"># Restore variables from disk.</span></span><br><span class="line">  restorer.restore(sess, <span class="string">"/tmp/model.ckpt"</span>)</span><br><span class="line">  print(<span class="string">"Model restored."</span>)</span><br><span class="line">  <span class="comment"># Do some work with the model</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>See <a href="https://www.tensorflow.org/how_tos/variables/index.html#restoring-variables" target="_blank" rel="noopener">Restoring Variables</a><br>and<br><a href="https://www.tensorflow.org/how_tos/variables/index.html#choosing-which-variables-to-save-and-restore" target="_blank" rel="noopener">Choosing which Variables to Save and Restore</a><br>sections of the <a href="https://www.tensorflow.org/how_tos/variables/index.html" target="_blank" rel="noopener">Variables</a><br>page for more details.</p>
+<p>参阅Variables章中Restoring Variables和Choosing which Variables to Save and Restor 相关部分，获取更多细节。</p>
+<h3 id="Partially-Restoring-Models"><a href="#Partially-Restoring-Models" class="headerlink" title="Partially Restoring Models"></a>Partially Restoring Models</h3><p>It is often desirable to fine-tune a pre-trained model on an entirely new<br>dataset or even a new task. In these situations, one can use TF-Slim’s<br>helper functions to select a subset of variables to restore:</p>
+<p>有时我们希望在一个全新的数据集上或面对一个信息任务方向去微调预训练模型。在这些情况下，我们可以使用TF-Slim’s的帮助函数去加载模型中变量的一个子集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create some variables.</span></span><br><span class="line">v1 = slim.variable(name=<span class="string">"v1"</span>, ...)</span><br><span class="line">v2 = slim.variable(name=<span class="string">"nested/v2"</span>, ...)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get list of variables to restore (which contains only 'v2'). These are all</span></span><br><span class="line"><span class="comment"># equivalent methods:</span></span><br><span class="line">variables_to_restore = slim.get_variables_by_name(<span class="string">"v2"</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">variables_to_restore = slim.get_variables_by_suffix(<span class="string">"2"</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">variables_to_restore = slim.get_variables(scope=<span class="string">"nested"</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">variables_to_restore = slim.get_variables_to_restore(include=[<span class="string">"nested"</span>])</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">variables_to_restore = slim.get_variables_to_restore(exclude=[<span class="string">"v1"</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the saver which will be used to restore the variables.</span></span><br><span class="line">restorer = tf.train.Saver(variables_to_restore)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  <span class="comment"># Restore variables from disk.</span></span><br><span class="line">  restorer.restore(sess, <span class="string">"/tmp/model.ckpt"</span>)</span><br><span class="line">  print(<span class="string">"Model restored."</span>)</span><br><span class="line">  <span class="comment"># Do some work with the model</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<h3 id="Restoring-models-with-different-variable-names"><a href="#Restoring-models-with-different-variable-names" class="headerlink" title="Restoring models with different variable names"></a>Restoring models with different variable names</h3><p>When restoring variables from a checkpoint, the <code>Saver</code><br>locates the variable names in a checkpoint file and maps them to variables in<br>the current graph. Above, we created a saver by passing to it a list of<br>variables. In this case, the names of the variables to locate in the checkpoint<br>file were implicitly obtained from each provided variable’s <code>var.op.name</code>.</p>
+<p>当从checkpoint加载变量时，Saver先在checkpoint中定位变量名，然后映射到当前图的变量中。我们也可以通过向saver传递一个变量列表来创建saver，这时，在checkpoint文件中用于定位的变量名可以隐式地从各自的var.op.name中获得。</p>
+<p>This works well when the variable names in the checkpoint file match those in<br>the graph. However, sometimes, we want to restore a model from a checkpoint<br>whose variables have different names to those in the current graph. In this case,<br>we must provide the <code>Saver</code> a dictionary that maps from each checkpoint variable<br>name to each graph variable. Consider the following example where the checkpoint<br>variables names are obtained via a simple function:</p>
+<p>当checkpoint文件中的变量名与当前图中的变量名完全匹配时，这会运行得很好。但是，有时我们想从一个变量名与与当前图的变量名不同的checkpoint文件中装载一个模型。这时，我们必须提供一个saver字典，这个字典对checkpoint中的每个变量和每个图变量进行了一一映射。请看下面这个例子，checkpoint的变量名是通过一个简单的函数获得的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assuming than 'conv1/weights' should be restored from 'vgg16/conv1/weights'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_in_checkpoint</span><span class="params">(var)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'vgg16/'</span> + var.op.name</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assuming than 'conv1/weights' and 'conv1/bias' should be restored from 'conv1/params1' and 'conv1/params2'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_in_checkpoint</span><span class="params">(var)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> <span class="string">"weights"</span> <span class="keyword">in</span> var.op.name:</span><br><span class="line">    <span class="keyword">return</span> var.op.name.replace(<span class="string">"weights"</span>, <span class="string">"params1"</span>)</span><br><span class="line">  <span class="keyword">if</span> <span class="string">"bias"</span> <span class="keyword">in</span> var.op.name:</span><br><span class="line">    <span class="keyword">return</span> var.op.name.replace(<span class="string">"bias"</span>, <span class="string">"params2"</span>)</span><br><span class="line"></span><br><span class="line">variables_to_restore = slim.get_model_variables()</span><br><span class="line">variables_to_restore = &#123;name_in_checkpoint(var):var <span class="keyword">for</span> var <span class="keyword">in</span> variables_to_restore&#125;</span><br><span class="line">restorer = tf.train.Saver(variables_to_restore)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  <span class="comment"># Restore variables from disk.</span></span><br><span class="line">  restorer.restore(sess, <span class="string">"/tmp/model.ckpt"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Fine-Tuning-a-Model-on-a-different-task"><a href="#Fine-Tuning-a-Model-on-a-different-task" class="headerlink" title="Fine-Tuning a Model on a different task"></a>Fine-Tuning a Model on a different task</h3><p>Consider the case where we have a pre-trained VGG16 model. The model was<br>trained on the ImageNet dataset, which has 1000 classes. However, we would<br>like to apply it to the Pascal VOC dataset which has only 20 classes. To<br>do so, we can initialize our new model using the values of the pre-trained<br>model excluding the final layer:</p>
+<p>假设我们有一个已经预训练好的VGG16的模型。这个模型是在拥有1000分类的ImageNet数据集上进行训练的。但是，现在我们想把它应用在只具有20个分类的Pascal VOC数据集上。为了能这样做，我们可以通过利用除最后一些全连接层的其他预训练模型值来初始化新模型达到目的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Load the Pascal VOC data</span></span><br><span class="line">image, label = MyPascalVocDataLoader(...)</span><br><span class="line">images, labels = tf.train.batch([image, label], batch_size=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model</span></span><br><span class="line">predictions = vgg.vgg_16(images)</span><br><span class="line"></span><br><span class="line">train_op = slim.learning.create_train_op(...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify where the Model, trained on ImageNet, was saved.</span></span><br><span class="line">model_path = <span class="string">'/path/to/pre_trained_on_imagenet.checkpoint'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify where the new model will live:</span></span><br><span class="line">log_dir = <span class="string">'/path/to/my_pascal_model_dir/'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Restore only the convolutional layers:</span></span><br><span class="line">variables_to_restore = slim.get_variables_to_restore(exclude=[<span class="string">'fc6'</span>, <span class="string">'fc7'</span>, <span class="string">'fc8'</span>])</span><br><span class="line">init_fn = assign_from_checkpoint_fn(model_path, variables_to_restore)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start training.</span></span><br><span class="line">slim.learning.train(train_op, log_dir, init_fn=init_fn)</span><br></pre></td></tr></table></figure>
+<h2 id="Evaluating-Models"><a href="#Evaluating-Models" class="headerlink" title="Evaluating Models."></a>Evaluating Models.</h2><p>Once we’ve trained a model (or even while the model is busy training) we’d like<br>to see how well the model performs in practice. This is accomplished by picking<br>a set of evaluation metrics, which will grade the models performance, and the<br>evaluation code which actually loads the data, performs inference, compares the<br>results to the ground truth and records the evaluation scores. This step may be<br>performed once or repeated periodically.</p>
+<p>一旦我们训练好了一个模型（或者模型还在训练中），我们想看一下模型在实际中性能如何。这可以通过获取一系列表征模型性能的评估指标来实现，评估代码一般会加载数据，执行前向传播，和ground truth进行比较并记录评估分数。这个步骤可能执行一次，也可能周期性地执行。</p>
+<h3 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h3><p>We define a metric to be a performance measure that is not a loss function<br>(losses are directly optimized during training), but which we are still<br>interested in for the purpose of evaluating our model.<br>For example, we might want to minimize log loss, but our metrics of interest<br>might be F1 score (test accuracy), or Intersection Over Union score (which are not<br>differentiable, and therefore cannot be used as losses).</p>
+<p>比如我们定义了一个不是损失函数的性能度量指标（损失在训练过程中进行直接优化），而这个指标出于评估模型的目的我们还非常感兴趣。比如说我们想最小化log损失，但是我们感兴趣的指标可能是F1 score（测试准确率），或者Intersection Over Union score 这个指标不可微，因此不能作为损失）。</p>
+<p>TF-Slim provides a set of metric operations that makes evaluating models<br>easy. Abstractly, computing the value of a metric can be divided into three<br>parts:</p>
+<p>TF-Slim提供了一系列指标操作符，它们可以使模型评估更简单。抽象来讲，计算一个指标值可以分为3步：</p>
+<ol>
+<li>Initialization: initialize the variables used to compute the metrics.</li>
+<li>Aggregation: perform operations (sums, etc) used to compute the metrics.</li>
+<li><p>Finalization: (optionally) perform any final operation to compute metric<br>values. For example, computing means, mins, maxes, etc.</p>
+</li>
+<li><p>初始化：初始化用于计算指标的变量。</p>
+</li>
+<li>聚合：执行用于计算指标的运算流程（比如sum）。</li>
+<li>收尾：（可选）执行其他用于计算指标值的操作。例如，计算mean、min、max等。</li>
+</ol>
+<p>For example, to compute <code>mean_absolute_error</code>, two variables, a <code>count</code> and<br><code>total</code> variable are <em>initialized</em> to zero. During <em>aggregation</em>, we observed<br>some set of predictions and labels, compute their absolute differences and add<br>the total to <code>total</code>. Each time we observe another value,<br><code>count</code> is incremented. Finally, during <em>finalization</em>, <code>total</code> is divided<br>by <code>count</code> to obtain the mean.</p>
+<p>例如，为了计算mean_absolute_error，一个count变量和一个total变量需要初始化为0. 在聚合阶段，我们可以观察到一系列预测值及标签，计算他们差的绝对值，并加到total中。每次循环，count变量自加1。最后，在收尾阶段，total除以count就得到了mean。</p>
+<p>The following example demonstrates the API for declaring metrics. Because<br>metrics are often evaluated on a test set which is different from the training<br>set (upon which the loss is computed), we’ll assume we’re using test data:</p>
+<p>下面的例子演示了定义指标的API。因为指标通常是在测试集上计算，而不是训练集（训练集上是用于计算loss的），我们假设我们在使用测试集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">images, labels = LoadTestData(...)</span><br><span class="line">predictions = MyModel(images)</span><br><span class="line"></span><br><span class="line">mae_value_op, mae_update_op = slim.metrics.streaming_mean_absolute_error(predictions, labels)</span><br><span class="line">mre_value_op, mre_update_op = slim.metrics.streaming_mean_relative_error(predictions, labels)</span><br><span class="line">pl_value_op, pl_update_op = slim.metrics.percentage_less(mean_relative_errors, <span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
+<p>As the example illustrates, the creation of a metric returns two values:<br>a <em>value_op</em> and an <em>update_op</em>. The value_op is an idempotent operation that<br>returns the current value of the metric. The update_op is an operation that<br>performs the <em>aggregation</em> step mentioned above as well as returning the value<br>of the metric.</p>
+<p>如上例所示，指标的创建会返回两个值，一个value_op和一个update_op。value_op表示和当前指标值相等的操作，update_op是上文提到的执行聚合步骤并返回指标值的操作符。</p>
+<p>Keeping track of each <code>value_op</code> and <code>update_op</code> can be laborious. To deal with<br>this, TF-Slim provides two convenience functions:</p>
+<p>跟踪每个value_op和update_op是非常费劲的。为了解决这个问题，TF-Slim提供了两个方便的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Aggregates the value and update ops in two lists:</span></span><br><span class="line">value_ops, update_ops = slim.metrics.aggregate_metrics(</span><br><span class="line">    slim.metrics.streaming_mean_absolute_error(predictions, labels),</span><br><span class="line">    slim.metrics.streaming_mean_squared_error(predictions, labels))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Aggregates the value and update ops in two dictionaries:</span></span><br><span class="line">names_to_values, names_to_updates = slim.metrics.aggregate_metric_map(&#123;</span><br><span class="line">    <span class="string">"eval/mean_absolute_error"</span>: slim.metrics.streaming_mean_absolute_error(predictions, labels),</span><br><span class="line">    <span class="string">"eval/mean_squared_error"</span>: slim.metrics.streaming_mean_squared_error(predictions, labels),</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Working-example-Tracking-Multiple-Metrics"><a href="#Working-example-Tracking-Multiple-Metrics" class="headerlink" title="Working example: Tracking Multiple Metrics"></a>Working example: Tracking Multiple Metrics</h3><p>Putting it all together:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> tensorflow.contrib.slim.nets <span class="keyword">as</span> nets</span><br><span class="line"></span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line">vgg = nets.vgg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the data</span></span><br><span class="line">images, labels = load_data(...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the network</span></span><br><span class="line">predictions = vgg.vgg_16(images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Choose the metrics to compute:</span></span><br><span class="line">names_to_values, names_to_updates = slim.metrics.aggregate_metric_map(&#123;</span><br><span class="line">    <span class="string">"eval/mean_absolute_error"</span>: slim.metrics.streaming_mean_absolute_error(predictions, labels),</span><br><span class="line">    <span class="string">"eval/mean_squared_error"</span>: slim.metrics.streaming_mean_squared_error(predictions, labels),</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the model using 1000 batches of data:</span></span><br><span class="line">num_batches = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  sess.run(tf.global_variables_initializer())</span><br><span class="line">  sess.run(tf.local_variables_initializer())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> batch_id <span class="keyword">in</span> range(num_batches):</span><br><span class="line">    sess.run(names_to_updates.values())</span><br><span class="line"></span><br><span class="line">  metric_values = sess.run(names_to_values.values())</span><br><span class="line">  <span class="keyword">for</span> metric, value <span class="keyword">in</span> zip(names_to_values.keys(), metric_values):</span><br><span class="line">    print(<span class="string">'Metric %s has value: %f'</span> % (metric, value))</span><br></pre></td></tr></table></figure>
+<p>Note that<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/metrics/python/ops/metric_ops.py" target="_blank" rel="noopener">metric_ops.py</a><br>can be used in isolation without using either<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/layers/python/layers/layers.py" target="_blank" rel="noopener">layers.py</a><br>or<br><a href="https://www.tensorflow.org/code/tensorflow/contrib/losses/python/losses/loss_ops.py" target="_blank" rel="noopener">loss_ops.py</a></p>
+<p>注意，metric_ops.py可以在没有layers.py和loss_ops.py的情况下独立使用。</p>
+<h3 id="Evaluation-Loop"><a href="#Evaluation-Loop" class="headerlink" title="Evaluation Loop"></a>Evaluation Loop</h3><p>TF-Slim provides an evaluation module<br>(<a href="https://www.tensorflow.org/code/tensorflow/contrib/slim/python/slim/evaluation.py" target="_blank" rel="noopener">evaluation.py</a>),<br>which contains helper functions for writing model evaluation scripts using<br>metrics from<br>the <a href="https://www.tensorflow.org/code/tensorflow/contrib/metrics/python/ops/metric_ops.py" target="_blank" rel="noopener">metric_ops.py</a><br>module. These include a function for periodically running evaluations,<br>evaluating<br>metrics over batches of data and printing and summarizing metric results. For<br>example:</p>
+<p>TF-Slim提供了一个评估模块（evaluation.py），这个模块包含了一些利用metric_ops.py模块的指标写模型评估脚本的帮助函数。其中包含一个可以周期运行评估，评估数据batch之间的指标、打印并总结指标结果的函数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the data</span></span><br><span class="line">images, labels = load_data(...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the network</span></span><br><span class="line">predictions = MyModel(images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Choose the metrics to compute:</span></span><br><span class="line">names_to_values, names_to_updates = slim.metrics.aggregate_metric_map(&#123;</span><br><span class="line">    <span class="string">'accuracy'</span>: slim.metrics.accuracy(predictions, labels),</span><br><span class="line">    <span class="string">'precision'</span>: slim.metrics.precision(predictions, labels),</span><br><span class="line">    <span class="string">'recall'</span>: slim.metrics.recall(mean_relative_errors, <span class="number">0.3</span>),</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the summary ops such that they also print out to std output:</span></span><br><span class="line">summary_ops = []</span><br><span class="line"><span class="keyword">for</span> metric_name, metric_value <span class="keyword">in</span> names_to_values.iteritems():</span><br><span class="line">  op = tf.summary.scalar(metric_name, metric_value)</span><br><span class="line">  op = tf.Print(op, [metric_value], metric_name)</span><br><span class="line">  summary_ops.append(op)</span><br><span class="line"></span><br><span class="line">num_examples = <span class="number">10000</span></span><br><span class="line">batch_size = <span class="number">32</span></span><br><span class="line">num_batches = math.ceil(num_examples / float(batch_size))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Setup the global step.</span></span><br><span class="line">slim.get_or_create_global_step()</span><br><span class="line"></span><br><span class="line">output_dir = ... <span class="comment"># Where the summaries are stored.</span></span><br><span class="line">eval_interval_secs = ... <span class="comment"># How often to run the evaluation.</span></span><br><span class="line">slim.evaluation.evaluation_loop(</span><br><span class="line">    <span class="string">'local'</span>,</span><br><span class="line">    checkpoint_dir,</span><br><span class="line">    log_dir,</span><br><span class="line">    num_evals=num_batches,</span><br><span class="line">    eval_op=names_to_updates.values(),</span><br><span class="line">    summary_op=tf.summary.merge(summary_ops),</span><br><span class="line">    eval_interval_secs=eval_interval_secs)</span><br></pre></td></tr></table></figure>
+<h2 id="Authors"><a href="#Authors" class="headerlink" title="Authors"></a>Authors</h2><p>Sergio Guadarrama and Nathan Silberman</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/小经验/" rel="next" title="小经验">
+                <i class="fa fa-chevron-left"></i> 小经验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zoe" />
+          <p class="site-author-name" itemprop="name">Zoe</p>
+           
+              <p class="site-description motion-element" itemprop="description">smile.smile.smile</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zoesxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zuo-yi-69-75/activities" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zzoe_0730@163.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gatsby2016.github.io/" title="Gatsby" target="_blank">Gatsby</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://m.blog.csdn.net/sxwzuoyi" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">1.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-TF-Slim"><span class="nav-number">2.</span> <span class="nav-text">Why TF-Slim?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-the-various-components-of-TF-Slim"><span class="nav-number">3.</span> <span class="nav-text">What are the various components of TF-Slim?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Defining-Models"><span class="nav-number">4.</span> <span class="nav-text">Defining Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables"><span class="nav-number">4.1.</span> <span class="nav-text">Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layers"><span class="nav-number">4.2.</span> <span class="nav-text">Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scopes"><span class="nav-number">4.3.</span> <span class="nav-text">Scopes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Working-Example-Specifying-the-VGG16-Layers"><span class="nav-number">4.4.</span> <span class="nav-text">Working Example: Specifying the VGG16 Layers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-Models"><span class="nav-number">5.</span> <span class="nav-text">Training Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Losses"><span class="nav-number">5.1.</span> <span class="nav-text">Losses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Loop"><span class="nav-number">5.2.</span> <span class="nav-text">Training Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Working-Example-Training-the-VGG16-Model"><span class="nav-number">5.3.</span> <span class="nav-text">Working Example: Training the VGG16 Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fine-Tuning-Existing-Models"><span class="nav-number">6.</span> <span class="nav-text">Fine-Tuning Existing Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brief-Recap-on-Restoring-Variables-from-a-Checkpoint"><span class="nav-number">6.1.</span> <span class="nav-text">Brief Recap on Restoring Variables from a Checkpoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partially-Restoring-Models"><span class="nav-number">6.2.</span> <span class="nav-text">Partially Restoring Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restoring-models-with-different-variable-names"><span class="nav-number">6.3.</span> <span class="nav-text">Restoring models with different variable names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fine-Tuning-a-Model-on-a-different-task"><span class="nav-number">6.4.</span> <span class="nav-text">Fine-Tuning a Model on a different task</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-Models"><span class="nav-number">7.</span> <span class="nav-text">Evaluating Models.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Metrics"><span class="nav-number">7.1.</span> <span class="nav-text">Metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Working-example-Tracking-Multiple-Metrics"><span class="nav-number">7.2.</span> <span class="nav-text">Working example: Tracking Multiple Metrics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-Loop"><span class="nav-number">7.3.</span> <span class="nav-text">Evaluation Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Authors"><span class="nav-number">8.</span> <span class="nav-text">Authors</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zoe</span>
+</div>
+
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("9RBYqJYr0vBPCz8abaPAolq7-gzGzoHsz", "8Jy2QbptRtxB7rDs07seHpk9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
