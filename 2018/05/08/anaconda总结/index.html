@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="anaconda," />
 
 
 
@@ -100,13 +100,14 @@
 
 
 <meta name="description" content="上来本又是一堆罗里吧嗦的感想，但是决定以后写博客会严肃点，而且经常得更，不知不觉小哥已经写那么多了，遇到相关问题每次都屁颠屁颠地到他博客看看。虽然写博客确实花点时间，但我也不是那么忙啊，不整理最后真的真的是忘了，所以坚持更！而且认真更，不然像我之前写的乱七八糟，我自己都不想看。">
+<meta name="keywords" content="anaconda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="anaconda总结">
 <meta property="og:url" content="http://yoursite.com/2018/05/08/anaconda总结/index.html">
 <meta property="og:site_name" content="Zoe&#39;s Blog">
 <meta property="og:description" content="上来本又是一堆罗里吧嗦的感想，但是决定以后写博客会严肃点，而且经常得更，不知不觉小哥已经写那么多了，遇到相关问题每次都屁颠屁颠地到他博客看看。虽然写博客确实花点时间，但我也不是那么忙啊，不整理最后真的真的是忘了，所以坚持更！而且认真更，不然像我之前写的乱七八糟，我自己都不想看。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-11T02:33:56.205Z">
+<meta property="og:updated_time" content="2018-05-11T02:44:19.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="anaconda总结">
 <meta name="twitter:description" content="上来本又是一堆罗里吧嗦的感想，但是决定以后写博客会严肃点，而且经常得更，不知不觉小哥已经写那么多了，遇到相关问题每次都屁颠屁颠地到他博客看看。虽然写博客确实花点时间，但我也不是那么忙啊，不整理最后真的真的是忘了，所以坚持更！而且认真更，不然像我之前写的乱七八糟，我自己都不想看。">
@@ -365,7 +366,7 @@
 
       
         <p>上来本又是一堆罗里吧嗦的感想，但是决定以后写博客会严肃点，而且经常得更，不知不觉小哥已经写那么多了，遇到相关问题每次都屁颠屁颠地到他博客看看。虽然写博客确实花点时间，但我也不是那么忙啊，不整理最后真的真的是忘了，所以坚持更！而且认真更，不然像我之前写的乱七八糟，我自己都不想看。<br><a id="more"></a><br>好，上面还是废话，这篇是关于anaconda的总结。本来是准备装pyenv隔离环境然后多版本使用，然后负责机子的师兄说最好装anaconda或miniconda，pyenv局限性大，三年前用的比较多。本来以为anaconda只能装一个版本，其实也能多版本使用。参考<a href="https://www.jianshu.com/p/2f3be7781451" target="_blank" rel="noopener">Anaconda使用总结</a>。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装根据<a href="https://docs.anaconda.com/anaconda/install/linux" target="_blank" rel="noopener">官网</a>即可，官网打开比较慢，主要步骤如下。<br>1.下载相应版本，<a href="https://www.anaconda.com/download/#linux" target="_blank" rel="noopener">官网链接</a>。<br>2.<code>bash ~/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh</code>  <code>bash</code>后面跟的是你下载的.sh的路径。<br>3.提示“In order to continue the installation process, please review the license agreement.”，按Enter键浏览许可条款。<br>4.不停地按Enter键浏览条款项，直到最后输入“yes”同意。<br>5.提示安装路径，默认安装在用户目录下，即home/用户名/anaconda，这样同一个机子上的不同用户可以独立安装，相互不干扰。根据提示，按Enter键默认路径，CTRL-C取消安装或者更改路径。<br>6.提示是否在用户.bashrc下加入anaconda环境变量，输入“yes”同意加入。<br>7.安装完成，显示“Thank you for installing Anaconda<2 3="" or="">!”<br>8.提示是否要安装Microsoft VS Code，输入“yes”或者“no”，安装的话需要联网和管理员权限。<br>9.要使安装生效的话，重新打开终端，或者输入<code>source ~/.bashrc</code>。<br>10.查看是否安装成功，可以输入<code>anaconda-navigator</code>看能不能打开navigator，我是在服务器上装的，打不开。也可以输入<code>which conda</code>或者<code>conda --version</code>验证，输入<code>python --version</code>可查看使用的python版本。</2></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装根据<a href="https://docs.anaconda.com/anaconda/install/linux" target="_blank" rel="noopener">官网</a>即可，官网打开比较慢，主要步骤如下。<br>1.下载相应版本，<a href="https://www.anaconda.com/download/#linux" target="_blank" rel="noopener">官网链接</a>。<br>2.<code>bash ~/Downloads/Anaconda2-5.1.0-Linux-x86_64.sh</code>  bash后面跟的是你下载的.sh的路径。<br>3.提示“In order to continue the installation process, please review the license agreement.”，按Enter键浏览许可条款。<br>4.不停地按Enter键浏览条款项，直到最后输入“yes”同意。<br>5.提示安装路径，默认安装在用户目录下，即home/用户名/anaconda，这样同一个机子上的不同用户可以独立安装，相互不干扰。根据提示，按Enter键默认路径，CTRL-C取消安装或者更改路径。<br>6.提示是否在用户.bashrc下加入anaconda环境变量，输入“yes”同意加入。<br>7.安装完成，显示“Thank you for installing Anaconda<2 3="" or="">!”<br>8.提示是否要安装Microsoft VS Code，输入“yes”或者“no”，安装的话需要联网和管理员权限。<br>9.要使安装生效的话，重新打开终端，或者输入<code>source ~/.bashrc</code>。<br>10.查看是否安装成功，可以输入<code>anaconda-navigator</code>看能不能打开navigator，我是在服务器上装的，打不开。也可以输入<code>which conda</code>或者<code>conda --version</code>验证，输入<code>python --version</code>可查看使用的python版本。</2></p>
 <h2 id="conda"><a href="#conda" class="headerlink" title="conda"></a>conda</h2><p><a href="https://conda.io/docs/index.html" target="_blank" rel="noopener">conda使用</a><br>conda是一个开源的<strong>包管理</strong>和<strong>环境管理</strong>系统。安装的其他conda环境在/envs目录下，一个conda环境有4个子目录，/bin，/include，/lib，/share。默认环境的名字是base。</p>
 <h3 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h3><pre><code>    # 查看conda版本，或者确定conda
     conda --version
@@ -421,7 +422,7 @@
 
     # 删除包
     conda remove packagexxx
-</code></pre><p><a href="https://groups.google.com/a/anaconda.com/forum/#!forum/anaconda" target="_blank" rel="noopener">anaconda论坛</a>        </p>
+</code></pre><p><a href="/download/conda-cheatsheet.pdf">下载cheatsheet文件</a><br><a href="https://groups.google.com/a/anaconda.com/forum/#!forum/anaconda" target="_blank" rel="noopener">anaconda论坛</a>        </p>
 
       
     </div>
@@ -448,6 +449,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/anaconda/" rel="tag"># anaconda</a>
+          
+        </div>
       
 
       
@@ -551,7 +558,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
