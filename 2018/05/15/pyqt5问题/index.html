@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="pyqt5," />
 
 
 
@@ -99,17 +99,18 @@
 
 
 
-<meta name="description" content="title: pyqt5date: 2018-05-15 15:56:56 tags: pyqt5毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
+<meta name="description" content="毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
+<meta name="keywords" content="pyqt5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zoe&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2018/05/15/pyqt5/index.html">
+<meta property="og:title" content="pyqt5问题">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/pyqt5问题/index.html">
 <meta property="og:site_name" content="Zoe&#39;s Blog">
-<meta property="og:description" content="title: pyqt5date: 2018-05-15 15:56:56 tags: pyqt5毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
+<meta property="og:description" content="毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-15T08:37:10.689Z">
+<meta property="og:updated_time" content="2018-05-15T08:43:32.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zoe&#39;s Blog">
-<meta name="twitter:description" content="title: pyqt5date: 2018-05-15 15:56:56 tags: pyqt5毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
+<meta name="twitter:title" content="pyqt5问题">
+<meta name="twitter:description" content="毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。">
 
 
 
@@ -137,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/15/pyqt5/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/15/pyqt5问题/"/>
 
 
 
 
 
-  <title>  | Zoe's Blog </title>
+  <title> pyqt5问题 | Zoe's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -292,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/15/pyqt5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/15/pyqt5问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zoe">
@@ -313,7 +314,7 @@
             
             
               
-                
+                pyqt5问题
               
             
           </h1>
@@ -328,7 +329,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-15T15:56:56+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-15T16:41:27+08:00">
                 2018-05-15
               </time>
             
@@ -364,9 +365,7 @@
       
 
       
-        <hr>
-<p>title: pyqt5<br>date: 2018-05-15 15:56:56</p>
-<h2 id="tags-pyqt5"><a href="#tags-pyqt5" class="headerlink" title="tags: pyqt5"></a>tags: pyqt5</h2><p>毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。<br><a id="more"></a></p>
+        <p>毕业设计做个GUI界面，一开始用Matlab做，只显示5张图片，后来打算显示多一点，10张20张，用Matlab我就不知道怎么弄了。后来就换成了PyQt，这边写下这次做GUI时遇到的一些问题。<br><a id="more"></a></p>
 <ol>
 <li>显示20张图片，用滚动条的形式，使用QlistWidget，参照<a href="https://blog.csdn.net/lilingdan/article/details/62047699" target="_blank" rel="noopener">pyqt QlistWidget 自定义设计一（静态设计）</a>。</li>
 <li>水平布局QHBoxLayout，左右排列；垂直布局QVBoxLayout，上下排列。布局安排时间隔啥的，有addStretch，AlignCenter，setContentsMargins，setSpacing等等。<ul>
@@ -411,6 +410,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pyqt5/" rel="tag"># pyqt5</a>
+          
+        </div>
       
 
       
@@ -476,17 +481,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -514,7 +510,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -586,22 +582,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-pyqt5"><span class="nav-number">1.</span> <span class="nav-text">tags: pyqt5</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
