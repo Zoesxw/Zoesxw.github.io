@@ -1,0 +1,790 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python文档," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="……">
+<meta name="keywords" content="python文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制流工具">
+<meta property="og:url" content="http://yoursite.com/2018/05/22/控制流工具/index.html">
+<meta property="og:site_name" content="Zoe&#39;s Blog">
+<meta property="og:description" content="……">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-22T11:40:33.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="控制流工具">
+<meta name="twitter:description" content="……">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/22/控制流工具/"/>
+
+
+
+
+
+  <title> 控制流工具 | Zoe's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?48b321ed2f9cb4a2acda1fddc5857b9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zoe's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Zoe</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/控制流工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                控制流工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-22T16:16:58+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>……<br><a id="more"></a></p>
+<h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if  elif  elif  else</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = int(input(<span class="string">"Please enter an integer: "</span>))  <span class="comment"># 要求输入一个值，代码会转换成int型</span></span><br><span class="line">Please enter an integer: <span class="number">42</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>   x = <span class="number">0</span></span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'Negative changed to zero'</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">elif</span> x == <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'Zero'</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">elif</span> x == <span class="number">1</span>:</span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'Single'</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>   print(<span class="string">'More'</span>)</span><br><span class="line">...</span><br><span class="line">More</span><br></pre></td></tr></table></figure>
+<h2 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># while xx: ...</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> b &lt; <span class="number">10</span>:</span><br><span class="line"><span class="meta">... </span>    print(b)</span><br><span class="line"><span class="meta">... </span>    a, b = b, a+b  <span class="comment"># 赋值语句先计算右边</span></span><br><span class="line">...</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+<h2 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># for xx in xxx: ...</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>words = [<span class="string">'cat'</span>, <span class="string">'window'</span>, <span class="string">'defenestrate'</span>]  <span class="comment"># 可以循环可迭代对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> w <span class="keyword">in</span> words:</span><br><span class="line"><span class="meta">... </span>    print(w, len(w))</span><br><span class="line">...</span><br><span class="line">cat <span class="number">3</span></span><br><span class="line">window <span class="number">6</span></span><br><span class="line">defenestrate <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> w <span class="keyword">in</span> words[:]:  <span class="comment"># words[:]对一开始的words进行了复制，因为后面修改了words</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> len(w) &gt; <span class="number">6</span>:</span><br><span class="line"><span class="meta">... </span>        words.insert(<span class="number">0</span>, w)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>words</span><br><span class="line">[<span class="string">'defenestrate'</span>, <span class="string">'cat'</span>, <span class="string">'window'</span>, <span class="string">'defenestrate'</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="range-函数"><a href="#range-函数" class="headerlink" title="range()函数"></a>range()函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):  <span class="comment"># 0，1，2，3，4</span></span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"></span><br><span class="line">range(<span class="number">5</span>, <span class="number">10</span>)</span><br><span class="line">   <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span></span><br><span class="line"></span><br><span class="line">range(<span class="number">0</span>, <span class="number">10</span>, <span class="number">3</span>)</span><br><span class="line">   <span class="number">0</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="string">'Mary'</span>, <span class="string">'had'</span>, <span class="string">'a'</span>, <span class="string">'little'</span>, <span class="string">'lamb'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):  <span class="comment"># 放在for循环中</span></span><br><span class="line"><span class="meta">... </span>    print(i, a[i])</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> Mary</span><br><span class="line"><span class="number">1</span> had</span><br><span class="line"><span class="number">2</span> a</span><br><span class="line"><span class="number">3</span> little</span><br><span class="line"><span class="number">4</span> lamb</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(range(<span class="number">10</span>))  <span class="comment"># 是一个object对象，不是列表，节省空间</span></span><br><span class="line">range(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(range(<span class="number">5</span>))  <span class="comment"># 变成列表</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="break和continue函数及循环中的else"><a href="#break和continue函数及循环中的else" class="headerlink" title="break和continue函数及循环中的else"></a>break和continue函数及循环中的else</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># while和for中的else，是在列表中的项用完了（for中），或者while中条件不成立；</span></span><br><span class="line"><span class="comment"># 但当因为break循环结束时，不执行else。</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">10</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">if</span> n % x == <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>            print(n, <span class="string">'equals'</span>, x, <span class="string">'*'</span>, n//x)</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">break</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>        print(n, <span class="string">'is a prime number'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="number">2</span> <span class="keyword">is</span> a prime number</span><br><span class="line"><span class="number">3</span> <span class="keyword">is</span> a prime number</span><br><span class="line"><span class="number">4</span> equals <span class="number">2</span> * <span class="number">2</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">is</span> a prime number</span><br><span class="line"><span class="number">6</span> equals <span class="number">2</span> * <span class="number">3</span></span><br><span class="line"><span class="number">7</span> <span class="keyword">is</span> a prime number</span><br><span class="line"><span class="number">8</span> equals <span class="number">2</span> * <span class="number">4</span></span><br><span class="line"><span class="number">9</span> equals <span class="number">3</span> * <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">10</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>        print(<span class="string">"Found an even number"</span>, num)</span><br><span class="line"><span class="meta">... </span>        <span class="keyword">continue</span>  <span class="comment"># 结束此次循环，继续下次循环</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">"Found a number"</span>, num)</span><br><span class="line">Found an even number <span class="number">2</span></span><br><span class="line">Found a number <span class="number">3</span></span><br><span class="line">Found an even number <span class="number">4</span></span><br><span class="line">Found a number <span class="number">5</span></span><br><span class="line">Found an even number <span class="number">6</span></span><br><span class="line">Found a number <span class="number">7</span></span><br><span class="line">Found an even number <span class="number">8</span></span><br><span class="line">Found a number <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h2 id="pass语句"><a href="#pass语句" class="headerlink" title="pass语句"></a>pass语句</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pass 语句的功能，是什么都不做，占一个位置，方便日后添加代码使用</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">initlog</span><span class="params">(*args)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">pass</span>   <span class="comment"># 占个位置，避免报错，内容可以以后进行修改。</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span>    <span class="comment"># 求斐波那契数列</span></span><br><span class="line"><span class="meta">... </span>    a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">while</span> a &lt; n:</span><br><span class="line"><span class="meta">... </span>        print(a, end=<span class="string">' '</span>)</span><br><span class="line"><span class="meta">... </span>        a, b = b, a+b</span><br><span class="line"><span class="meta">... </span>    print()</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">2000</span>)</span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span> <span class="number">987</span> <span class="number">1597</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">0</span>)  <span class="comment"># 当函数里面没有return时，也是有返回值的，称为None，可用print显示</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(fib(<span class="number">0</span>))</span><br><span class="line"><span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<h2 id="关于函数定义"><a href="#关于函数定义" class="headerlink" title="关于函数定义"></a>关于函数定义</h2><h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给定了默认值</span></span><br><span class="line">i = <span class="number">5</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(arg=i)</span>:</span></span><br><span class="line">    print(arg)</span><br><span class="line">i = <span class="number">6</span></span><br><span class="line">f()  <span class="comment"># 结果是5，因为在函数定义时，arg参数已经被赋值默认值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a, L=[])</span>:</span>  <span class="comment"># 默认值只会被赋值一次，所以参数被连续使用</span></span><br><span class="line">    L.append(a)</span><br><span class="line">    <span class="keyword">return</span> L</span><br><span class="line">print(f(<span class="number">1</span>))</span><br><span class="line">print(f(<span class="number">2</span>))</span><br><span class="line">print(f(<span class="number">3</span>))  <span class="comment"># 结果为[1] [1,2] [1,2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a, L=None)</span>:</span>  <span class="comment"># 这样感觉每次都会被赋成None</span></span><br><span class="line">    <span class="keyword">if</span> L <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        L = []</span><br><span class="line">    L.append(a)</span><br><span class="line">    <span class="keyword">return</span> L  <span class="comment"># 结果为[1] [2] [3]  可以这样进行修改</span></span><br></pre></td></tr></table></figure>
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数(*)"></a>可变参数(*)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这个参数将接受剩余未匹配的零个或多个参数，将他们组合打包成元组</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">text_3</span><span class="params">(a,*args)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(a)</span><br><span class="line"><span class="meta">... </span>    print(type(args),args)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text_3(<span class="number">1</span>,<span class="number">23</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">tuple</span>'&gt; <span class="params">(<span class="number">23</span>, <span class="number">2</span>, <span class="number">2</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 和可变参数一样，接受剩余未匹配的零个或多个参数，将他们打包成字典;</span></span><br><span class="line"><span class="comment"># 要求调用函数的时候，应该用key = value的形式进行传递值。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cheeseshop</span><span class="params">(kind, *arguments, **keywords)</span>:</span></span><br><span class="line">    print(<span class="string">"-- Do you have any"</span>, kind, <span class="string">"?"</span>)</span><br><span class="line">    print(<span class="string">"-- I'm sorry, we're all out of"</span>, kind)</span><br><span class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> arguments:</span><br><span class="line">        print(arg)</span><br><span class="line">    print(<span class="string">"-"</span> * <span class="number">40</span>)</span><br><span class="line">    <span class="keyword">for</span> kw <span class="keyword">in</span> keywords:</span><br><span class="line">        print(kw, <span class="string">":"</span>, keywords[kw])</span><br><span class="line">cheeseshop(<span class="string">"Limburger"</span>, <span class="string">"It's very runny, sir."</span>,</span><br><span class="line">           <span class="string">"It's really very, VERY runny, sir."</span>,</span><br><span class="line">           shopkeeper=<span class="string">"Michael Palin"</span>,</span><br><span class="line">           client=<span class="string">"John Cleese"</span>,</span><br><span class="line">           sketch=<span class="string">"Cheese Shop Sketch"</span>)</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">-- Do you have any Limburger ?</span><br><span class="line">-- I<span class="string">'m sorry, we'</span>re all out of Limburger</span><br><span class="line">It<span class="string">'s very runny, sir.</span></span><br><span class="line"><span class="string">It'</span>s really very, VERY runny, sir.</span><br><span class="line">----------------------------------------</span><br><span class="line">shopkeeper : Michael Palin</span><br><span class="line">client : John Cleese</span><br><span class="line">sketch : Cheese Shop Sketch</span><br></pre></td></tr></table></figure>
+<h3 id="解压参数列表"><a href="#解压参数列表" class="headerlink" title="解压参数列表"></a>解压参数列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(range(<span class="number">3</span>, <span class="number">6</span>))</span><br><span class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>args = [<span class="number">3</span>, <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(range(*args))  <span class="comment"># 通过* 将列表或元祖中的参数解压，一个个提出来</span></span><br><span class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同样，用** 解压字典变量</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">parrot</span><span class="params">(voltage, state=<span class="string">'a stiff'</span>, action=<span class="string">'voom'</span>)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">"-- This parrot wouldn't"</span>, action, end=<span class="string">' '</span>)</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">"if you put"</span>, voltage, <span class="string">"volts through it."</span>, end=<span class="string">' '</span>)</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">"E's"</span>, state, <span class="string">"!"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">"voltage"</span>: <span class="string">"four million"</span>, <span class="string">"state"</span>: <span class="string">"bleedin' demised"</span>, <span class="string">"action"</span>: <span class="string">"VOOM"</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>parrot(**d)</span><br><span class="line">-- This parrot wouldn<span class="string">'t VOOM if you put four million volts through it. E'</span>s bleedin<span class="string">' demised !</span></span><br></pre></td></tr></table></figure>
+<h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><h1 id="lambda-a-b-a-b-也是一种函数，简单的写法"><a href="#lambda-a-b-a-b-也是一种函数，简单的写法" class="headerlink" title="lambda a, b: a+b 也是一种函数，简单的写法"></a>lambda a, b: a+b 也是一种函数，简单的写法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">make_incrementor</span><span class="params">(n)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x + n</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = make_incrementor(<span class="number">42</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">0</span>)</span><br><span class="line"><span class="number">42</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">1</span>)</span><br><span class="line"><span class="number">43</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="keyword">lambda</span> x : x ** <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a(<span class="number">5</span>)</span><br><span class="line"><span class="number">25</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pairs = [(<span class="number">1</span>, <span class="string">'one'</span>), (<span class="number">2</span>, <span class="string">'two'</span>), (<span class="number">3</span>, <span class="string">'three'</span>), (<span class="number">4</span>, <span class="string">'four'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pairs.sort(key=<span class="keyword">lambda</span> pair: pair[<span class="number">1</span>])  <span class="comment"># sort括号内是用lambda自定义的比较函数，比较对象为pair[1]</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pairs</span><br><span class="line">[(<span class="number">4</span>, <span class="string">'four'</span>), (<span class="number">1</span>, <span class="string">'one'</span>), (<span class="number">3</span>, <span class="string">'three'</span>), (<span class="number">2</span>, <span class="string">'two'</span>)]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python文档/" rel="tag"># python文档</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/数字、字符串和列表/" rel="next" title="数字、字符串和列表">
+                <i class="fa fa-chevron-left"></i> 数字、字符串和列表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zoe" />
+          <p class="site-author-name" itemprop="name">Zoe</p>
+           
+              <p class="site-description motion-element" itemprop="description">smile.smile.smile</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zoesxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zuo-yi-69-75/activities" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zzoe_0730@163.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gatsby2016.github.io/" title="Gatsby" target="_blank">Gatsby</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://m.blog.csdn.net/sxwzuoyi" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#if语句"><span class="nav-number">1.</span> <span class="nav-text">if语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while语句"><span class="nav-number">2.</span> <span class="nav-text">while语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for语句"><span class="nav-number">3.</span> <span class="nav-text">for语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range-函数"><span class="nav-number">4.</span> <span class="nav-text">range()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break和continue函数及循环中的else"><span class="nav-number">5.</span> <span class="nav-text">break和continue函数及循环中的else</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pass语句"><span class="nav-number">6.</span> <span class="nav-text">pass语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数定义"><span class="nav-number">7.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于函数定义"><span class="nav-number">8.</span> <span class="nav-text">关于函数定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">8.1.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变参数"><span class="nav-number">8.2.</span> <span class="nav-text">可变参数(*)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字参数"><span class="nav-number">8.3.</span> <span class="nav-text">关键字参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压参数列表"><span class="nav-number">8.4.</span> <span class="nav-text">解压参数列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda表达式"><span class="nav-number">8.5.</span> <span class="nav-text">lambda表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lambda-a-b-a-b-也是一种函数，简单的写法"><span class="nav-number"></span> <span class="nav-text">lambda a, b: a+b 也是一种函数，简单的写法</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zoe</span>
+</div>
+
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
