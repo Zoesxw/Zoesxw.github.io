@@ -1,0 +1,782 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python文档," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="……">
+<meta name="keywords" content="python文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入和输出">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/输入和输出/index.html">
+<meta property="og:site_name" content="Zoe&#39;s Blog">
+<meta property="og:description" content="……">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-24T06:38:38.922Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="输入和输出">
+<meta name="twitter:description" content="……">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/输入和输出/"/>
+
+
+
+
+
+  <title> 输入和输出 | Zoe's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?48b321ed2f9cb4a2acda1fddc5857b9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zoe's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Zoe</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/输入和输出/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                输入和输出
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T10:51:59+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>……<br><a id="more"></a></p>
+<h2 id="format-方法"><a href="#format-方法" class="headerlink" title="format()方法"></a>format()方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># str.format()</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'We are the &#123;&#125; who say "&#123;&#125;!"'</span>.format(<span class="string">'knights'</span>, <span class="string">'Ni'</span>))</span><br><span class="line">We are the knights who say <span class="string">"Ni!"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'&#123;0&#125; and &#123;1&#125;'</span>.format(<span class="string">'spam'</span>, <span class="string">'eggs'</span>))  <span class="comment"># 位置</span></span><br><span class="line">spam <span class="keyword">and</span> eggs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'&#123;1&#125; and &#123;0&#125;'</span>.format(<span class="string">'spam'</span>, <span class="string">'eggs'</span>))</span><br><span class="line">eggs <span class="keyword">and</span> spam</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'This &#123;food&#125; is &#123;adjective&#125;.'</span>.format(</span><br><span class="line"><span class="meta">... </span>      food=<span class="string">'spam'</span>, adjective=<span class="string">'absolutely horrible'</span>))</span><br><span class="line">This spam <span class="keyword">is</span> absolutely horrible.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'The story of &#123;0&#125;, &#123;1&#125;, and &#123;other&#125;.'</span>.format(<span class="string">'Bill'</span>, <span class="string">'Manfred'</span>,</span><br><span class="line">                                                       other=<span class="string">'Georg'</span>))</span><br><span class="line">The story of Bill, Manfred, <span class="keyword">and</span> Georg.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'The value of PI is approximately &#123;0:.3f&#125;.'</span>.format(math.pi))</span><br><span class="line">The value of PI <span class="keyword">is</span> approximately <span class="number">3.142</span>.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>table = &#123;<span class="string">'Sjoerd'</span>: <span class="number">4127</span>, <span class="string">'Jack'</span>: <span class="number">4098</span>, <span class="string">'Dcab'</span>: <span class="number">7678</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, phone <span class="keyword">in</span> table.items():</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'&#123;0:10&#125; ==&gt; &#123;1:10d&#125;'</span>.format(name, phone))</span><br><span class="line">...</span><br><span class="line">Jack       ==&gt;       4098</span><br><span class="line">Dcab       ==&gt;       7678</span><br><span class="line">Sjoerd     ==&gt;       4127</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>table = &#123;<span class="string">'Sjoerd'</span>: <span class="number">4127</span>, <span class="string">'Jack'</span>: <span class="number">4098</span>, <span class="string">'Dcab'</span>: <span class="number">8637678</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Jack: &#123;0[Jack]:d&#125;; Sjoerd: &#123;0[Sjoerd]:d&#125;; '</span></span><br><span class="line"><span class="meta">... </span>      <span class="string">'Dcab: &#123;0[Dcab]:d&#125;'</span>.format(table))</span><br><span class="line">Jack: <span class="number">4098</span>; Sjoerd: <span class="number">4127</span>; Dcab: <span class="number">8637678</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>table = &#123;<span class="string">'Sjoerd'</span>: <span class="number">4127</span>, <span class="string">'Jack'</span>: <span class="number">4098</span>, <span class="string">'Dcab'</span>: <span class="number">8637678</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Jack: &#123;Jack:d&#125;; Sjoerd: &#123;Sjoerd:d&#125;; Dcab: &#123;Dcab:d&#125;'</span>.format(**table))</span><br><span class="line">Jack: <span class="number">4098</span>; Sjoerd: <span class="number">4127</span>; Dcab: <span class="number">8637678</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意，还可以使用类似的C方法：%</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'The value of PI is approximately %5.3f.'</span> % math.pi)</span><br><span class="line">The value of PI <span class="keyword">is</span> approximately <span class="number">3.142</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># opne()返回一个文件对象，open(filename, mode)，两个参数</span></span><br><span class="line"><span class="comment"># filename：文件名，一个字符串；mode：方式，如下：</span></span><br><span class="line"><span class="comment"># 'r'：只读；'w':只写；'a'：在末尾写入内容；'r+'：可读可写；</span></span><br><span class="line"><span class="comment"># 不指名mode时，默认是'r'只读。</span></span><br><span class="line"><span class="comment"># b: 写在上面字母的后面，以二进制形式打开文件，不能作用于文本文件。</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = open(<span class="string">'workfile'</span>, <span class="string">'w'</span>)</span><br><span class="line"><span class="comment"># 需要关闭文件</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.close()</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'workfile'</span>) <span class="keyword">as</span> f:  <span class="comment"># 这样不用手动关闭文件</span></span><br><span class="line"><span class="meta">... </span>    read_data = f.read()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.closed</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.read()</span><br><span class="line"><span class="string">'This is the entire file.\n'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.read()  <span class="comment"># 读完以后再读返回空字符串</span></span><br><span class="line"><span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.readline()  <span class="comment"># 读一行</span></span><br><span class="line"><span class="string">'This is the first line of the file.\n'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.readline()</span><br><span class="line"><span class="string">'Second line of the file\n'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.readline()</span><br><span class="line"><span class="string">''</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line"><span class="meta">... </span>    print(line, end=<span class="string">''</span>)</span><br><span class="line">...</span><br><span class="line">This <span class="keyword">is</span> the first line of the file.</span><br><span class="line">Second line of the file</span><br><span class="line"><span class="comment"># 想以列表的方式：list(f)或者f.readlines()</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.write(<span class="string">'This is a test\n'</span>)  <span class="comment"># 写入，并返回写入的字符数</span></span><br><span class="line"><span class="number">15</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>value = (<span class="string">'the answer'</span>, <span class="number">42</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = str(value)  <span class="comment"># 其他类型必须转为字符串，这边是元组类型</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.write(s)</span><br><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure>
+<h2 id="jason操作"><a href="#jason操作" class="headerlink" title="jason操作"></a>jason操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用来处理复杂的数据格式：列表、字典等</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps([<span class="number">1</span>, <span class="string">'simple'</span>, <span class="string">'list'</span>])</span><br><span class="line"><span class="string">'[1, "simple", "list"]'</span></span><br><span class="line"><span class="comment"># 写入文件就可以这样操作</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="string">'I'</span>,<span class="string">'Love'</span>,<span class="string">'Python'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="string">'I'</span>, <span class="string">'Love'</span>, <span class="string">'Python'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = open(<span class="string">'python.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.write(a)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: write() argument must be str, <span class="keyword">not</span> list</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>new_a = json.dumps(a)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.write(new_a)  <span class="comment"># 由此可见，文件只能写入字符串，所以写入前要进行转化。</span></span><br><span class="line"><span class="number">23</span></span><br><span class="line">&gt;&gt;&gt;f.close()</span><br><span class="line"><span class="comment"># 还可以使用json.dump直接写入</span></span><br><span class="line">json.dump(x, f)  <span class="comment"># f是打开的文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文件中读出来</span></span><br><span class="line">x = json.load(f)</span><br><span class="line"><span class="comment"># json.dumps的反操作</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>new_a</span><br><span class="line"><span class="string">'["I", "Love", "Python"]'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(new_a)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line">&gt;&gt;&gt; load_a=json.loads(new_a)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>load_a</span><br><span class="line">[<span class="string">'I'</span>, <span class="string">'Love'</span>, <span class="string">'Python'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(load_a)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<p>就酱，总共稍稍整理了6章，我不想再看这个了，官方文档真心多啊，也没学到啥，不知道为什么，文档的英文很难看下去。（搞的好像其他英文资料能看下去）。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python文档/" rel="tag"># python文档</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/模块/" rel="next" title="模块">
+                <i class="fa fa-chevron-left"></i> 模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zoe" />
+          <p class="site-author-name" itemprop="name">Zoe</p>
+           
+              <p class="site-description motion-element" itemprop="description">smile.smile.smile</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zoesxw" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zuo-yi-69-75/activities" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zzoe_0730@163.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://gatsby2016.github.io/" title="Gatsby" target="_blank">Gatsby</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://m.blog.csdn.net/sxwzuoyi" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#format-方法"><span class="nav-number">1.</span> <span class="nav-text">format()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写文件"><span class="nav-number">2.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jason操作"><span class="nav-number">3.</span> <span class="nav-text">jason操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zoe</span>
+</div>
+
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
