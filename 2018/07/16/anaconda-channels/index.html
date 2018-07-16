@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="anaconda," />
 
 
 
@@ -99,16 +99,18 @@
 
 
 
-<meta name="description" content="smile.smile.smile">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zoe&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta name="description" content="……">
+<meta name="keywords" content="anaconda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="anaconda channels">
+<meta property="og:url" content="http://yoursite.com/2018/07/16/anaconda-channels/index.html">
 <meta property="og:site_name" content="Zoe&#39;s Blog">
-<meta property="og:description" content="smile.smile.smile">
+<meta property="og:description" content="……">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-16T07:07:09.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zoe&#39;s Blog">
-<meta name="twitter:description" content="smile.smile.smile">
+<meta name="twitter:title" content="anaconda channels">
+<meta name="twitter:description" content="……">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/16/anaconda-channels/"/>
 
 
 
 
 
-  <title> Archive | Zoe's Blog </title>
+  <title> anaconda channels | Zoe's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -177,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,255 +283,159 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 29 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/anaconda-channels/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zoe's Blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                anaconda channels
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-16T14:29:02+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>……<br><a id="more"></a><br>之前在安装的时候，就看到要添加国内镜像源，因为用conda install时，下载很慢。<br>今天稍微理了下，channels就是要安装包时，conda寻找下载包的位置。默认的channels是anaconda的<a href="https://repo.continuum.io/pkgs/" target="_blank" rel="noopener">repo.continuum.io仓库</a>，所以conda就从这里下载。<br>你可以自己添加链接进行channel的管理，当有多个channel时，conda下载的位置是根据channel的优先级。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels new_channel</span><br><span class="line">conda config --prepend channels new_channel # 这两个命令都是添加“new_channel”为最高优先级。</span><br><span class="line">conda config --append channels new_channel # 最低优先级</span><br></pre></td></tr></table></figure></p>
+<p>由于默认channel所在的Anaconda.org的服务器在国外，下载往往很慢，容易失败，而清华大学提供了<a href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">anaconda仓库的镜像</a>，故将它添加到channel中，会加快下载速度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure></p>
+<p>在anaconda3的同级目录下有个.condarc文件，可以打开查看，里面有channels信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls yes</span><br></pre></td></tr></table></figure></p>
+<p>另外清华大学镜像站上还提供了anaconda三方源，感觉以后下载的时候可以根据<a href="https://anaconda.org/search?q=tensorflow" target="_blank" rel="noopener">anaconda cloud</a>中下载最多的版本。</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/anaconda/" rel="tag"># anaconda</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/14/caffe安装/" rel="next" title="caffe安装">
+                <i class="fa fa-chevron-left"></i> caffe安装
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/09/xiamen3/" itemprop="url">
-              
-                <span itemprop="name">厦门亲像一首歌3</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-09T15:58:11+08:00"
-              content="2017-11-09" >
-          11-09
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/09/xiamen2/" itemprop="url">
-              
-                <span itemprop="name">厦门亲像一首歌2</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-09T14:23:21+08:00"
-              content="2017-11-09" >
-          11-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/08/xiamen1/" itemprop="url">
-              
-                <span itemprop="name">厦门亲像一首歌1</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-08T17:11:18+08:00"
-              content="2017-11-08" >
-          11-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/30/平时积攒的网页/" itemprop="url">
-              
-                <span itemprop="name">平时积攒的网页</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-30T10:49:24+08:00"
-              content="2017-10-30" >
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/20/cs229-note2/" itemprop="url">
-              
-                <span itemprop="name">CS229-note2</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-20T13:52:32+08:00"
-              content="2017-10-20" >
-          10-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/18/cs229-note1/" itemprop="url">
-              
-                <span itemprop="name">CS229-note1</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-18T15:14:07+08:00"
-              content="2017-10-18" >
-          10-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -537,6 +443,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -761,7 +671,9 @@
   
 
   
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
